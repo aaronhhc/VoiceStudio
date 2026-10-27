@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="vs-release" content="vs-20261027-1db5a87">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self' https://huggingface.co https://*.huggingface.co https://*.hf.co; img-src 'self' data: blob:; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Credits and licences — Voice Studio</title>
+<link rel="stylesheet" href="ux/ux.css"><link rel="stylesheet" href="studio/studio.css">
+<style>
+ body { overflow: auto; } main { max-width: 52rem; margin: 0 auto; padding: var(--s-6) var(--s-4) var(--s-8); }
+ h1 { font-size: var(--fs-3); } h2 { font-size: var(--fs-2); margin-top: var(--s-6); } table { width: 100%; border-collapse: collapse; font-size: var(--fs-0); }
+ td, th { text-align: left; vertical-align: top; padding: .5rem .6rem .5rem 0; border-bottom: 1px solid var(--line); } th { color: var(--text-2); font-weight: 600; }
+ a { color: var(--accent-2); } p, li { color: var(--text-2); } code { font-family: var(--mono); font-size: .9em; }
+</style></head>
+<body><main>
+<p><a href="./">← Voice Studio</a></p>
+<h1>Credits and licences</h1>
+<p>Voice Studio is a non-commercial university research demonstration (National Taiwan Normal University, Department of Computer Science and Information
+ Engineering). It runs the speech models below inside your browser. We did not create these models; we packaged them for the browser, and where we changed a file
+ this page says so.</p>
+<p>Responsible use: only clone a voice with the speaker’s permission, and label generated audio as synthetic when you share it. This app adds no audio watermark.</p>
+
+<h2>Models</h2>
+<table><thead><tr><th>Component</th><th>Licence</th><th>Our changes</th></tr></thead><tbody>
+<tr><td>ZipVoice-Distill (k2-fsa), INT8 model bundle from the <a href="https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice">sherpa-onnx WebAssembly demo</a> · <a href="https://github.com/k2-fsa/ZipVoice">code</a></td>
+ <td>Pre-trained weights: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> (stated on <a href="https://huggingface.co/k2-fsa/ZipVoice">the model card</a>, because of the Emilia training data). Non-commercial use only. Code: Apache-2.0.</td>
+ <td>None to the bundle. For the graphics-processor path the INT8 decoder is dequantised to FP32. Your browser does this itself, from the INT8 decoder inside the bundle,
+ using a graph and a recipe this website publishes (<code>models/webgpu/decoder.dq.graph.onnx</code>, <code>decoder.dq.recipe.json</code>). Those two files are an adaptation and carry
+ the same CC BY-NC 4.0 terms; the converted weights themselves are not published.</td></tr>
+<tr><td>Vocos 24 kHz vocoder (inside the ZipVoice bundle) · <a href="https://github.com/gemelo-ai/vocos">gemelo-ai/vocos</a></td><td>MIT</td><td>None</td></tr>
+<tr><td>Chatterbox (Resemble AI) · ONNX export <a href="https://huggingface.co/onnx-community/chatterbox-ONNX">onnx-community/chatterbox-ONNX</a></td><td>MIT</td><td>None</td></tr>
+<tr><td>F5-TTS (SWivid) · <a href="https://huggingface.co/SWivid/F5-TTS">weights</a> · ONNX export <a href="https://huggingface.co/nsarang/F5-TTS-ONNX">nsarang/F5-TTS-ONNX</a> · <a href="https://github.com/SWivid/F5-TTS">code</a></td>
+ <td>Weights: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>, non-commercial use only (the ONNX export is tagged Apache-2.0, but it is derived from these weights). Code: MIT.</td>
+ <td>None to the weights. We corrected the sampling schedule in our own browser code.</td></tr>
+</tbody></table>
+
+<h2>Where the files come from</h2>
+<p>This website (GitHub Pages) serves the app, the WebAssembly runtimes and the small files above. The model weights are downloaded by your browser directly from
+ the original Hugging Face repositories, at fixed revisions, and checked against the sizes and SHA-256 hashes recorded for this release:
+ <a href="https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/tree/a118980aaa8d985d10e57425c1fdc2301c05f4cc">k2-fsa/web-assembly-zh-en-tts-zipvoice @ a118980a</a> (ZipVoice bundle),
+ <a href="https://huggingface.co/onnx-community/chatterbox-ONNX/tree/3cab09af388d3f02bba43443fce88c1f4525ac43">onnx-community/chatterbox-ONNX @ 3cab09af</a> and
+ <a href="https://huggingface.co/nsarang/F5-TTS-ONNX/tree/2e7e47e103a565c85dcd32141b6b11eeeb57eee6">nsarang/F5-TTS-ONNX @ 2e7e47e1</a>.
+ Hugging Face’s own terms and privacy policy apply to those downloads.</p>
+
+<h2>Runtimes and libraries</h2>
+<table><thead><tr><th>Component</th><th>Licence</th><th>Our changes</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/k2-fsa/sherpa-onnx">sherpa-onnx</a> WebAssembly runtime</td><td>Apache-2.0</td><td>The plain processor (CPU) path uses k2-fsa’s own build, loaded unchanged from their Space. The ZipVoice graphics-processor path uses our build of v1.13.8 with a patch that splits the decoder out (<a href="../source/">source</a>).</td></tr>
+<tr><td><a href="https://github.com/espeak-ng/espeak-ng">eSpeak NG</a> (phonemiser compiled into the sherpa-onnx WebAssembly; its data inside the ZipVoice bundle)</td><td><a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0</a></td><td>None. See “Source code” below.</td></tr>
+<tr><td><a href="https://github.com/microsoft/onnxruntime">ONNX Runtime Web</a> 1.22.0, 1.30.0 and 1.25.0-dev (a3749f1353)</td><td>MIT</td><td>For Chatterbox we build the same 1.25.0-dev commit with one change, a session option that skips memory-reuse planning for the decoder (faster start-up). <a href="../source/">Patch and build script</a>.</td></tr>
+<tr><td><a href="https://github.com/huggingface/transformers.js">Transformers.js</a> 4.0.0-next.2</td><td>Apache-2.0</td><td>None</td></tr>
+<tr><td><a href="https://github.com/zh-lx/pinyin-pro">pinyin-pro</a> 3.29.5</td><td>MIT</td><td>None</td></tr>
+</tbody></table>
+<p>The licence texts are in <a href="../source/LICENSES.md">LICENSES.md</a>; the full component list with versions is in <a href="../THIRD_PARTY.md">THIRD_PARTY.md</a>.</p>
+
+<h2>Source code</h2>
+<p>Our WebAssembly runtime build contains eSpeak NG (GPL-3.0). Its corresponding source is the public <a href="https://github.com/k2-fsa/sherpa-onnx">sherpa-onnx</a> repository
+ (with its eSpeak NG dependency) at the version named above, plus our patch and build script, which this website publishes under <a href="../source/">/source/</a>.
+ The other changes we made (ONNX Runtime patch, decoder conversion script) are there too.</p>
+
+<h2>Privacy</h2>
+<p>Your recording, your text and the generated audio are processed in this browser and are not uploaded. Your browser only downloads: the app from this website,
+ and model files from Hugging Face (the first time you use each model; nothing about your recording or text is sent with those downloads). There are no accounts,
+ analytics or advertising.</p>
+</main></body></html>

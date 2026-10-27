@@ -1,0 +1,32 @@
+diff --git a/include/onnxruntime/core/session/onnxruntime_session_options_config_keys.h b/include/onnxruntime/core/session/onnxruntime_session_options_config_keys.h
+index 1ea147a..b9a0ee8 100644
+--- a/include/onnxruntime/core/session/onnxruntime_session_options_config_keys.h
++++ b/include/onnxruntime/core/session/onnxruntime_session_options_config_keys.h
+@@ -39,6 +39,12 @@ static const char* const kOrtSessionOptionsConfigSaveModelFormat = "session.save
+ // denormal-as-zero is only applied to global OpenMP thread pool, which doesn't support per-session thread pool.
+ // Note that an alternative way not using this option at runtime is to train and export a model without denormals
+ // and that's recommended because turning this option on may hurt model accuracy.
++// Per-session opt-out of memory-reuse planning: "1" sets SessionOptions::enable_mem_reuse = false for this session only (the same switch the C++/Python
++// API exposes as enable_mem_reuse, which the JS/WASM API has no other way to reach). Default "0" = unchanged behaviour.
++// Motivation: SequentialPlanner's single-stream reuse search (PlannerImpl::FindReusableTensor scanning the free list for every output) dominates session
++// creation for very large graphs, e.g. ~24 s of 25.7 s for a 24k-node TTS decoder. Outputs are unaffected; only buffer sharing between values is skipped.
++static const char* const kOrtSessionOptionsDisableMemoryReuse = "session.disable_mem_reuse";
++
+ static const char* const kOrtSessionOptionsConfigSetDenormalAsZero = "session.set_denormal_as_zero";
+ 
+ // It controls to run quantization model in QDQ (QuantizelinearDeQuantizelinear) format or not.
+diff --git a/onnxruntime/core/session/inference_session.cc b/onnxruntime/core/session/inference_session.cc
+index 0944be8..7ae48f1 100644
+--- a/onnxruntime/core/session/inference_session.cc
++++ b/onnxruntime/core/session/inference_session.cc
+@@ -407,6 +407,10 @@ void InferenceSession::ConstructorCommon(const SessionOptions& session_options,
+   }
+ #endif
+ 
++  if (session_options_.config_options.GetConfigOrDefault(kOrtSessionOptionsDisableMemoryReuse, "0") == "1") {
++    session_options_.enable_mem_reuse = false;
++  }
++
+   bool set_denormal_as_zero =
+       session_options_.config_options.GetConfigOrDefault(kOrtSessionOptionsConfigSetDenormalAsZero, "0") == "1";
+ 

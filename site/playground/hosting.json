@@ -1,0 +1,248 @@
+{
+ "release": "vs-20261027-1db5a87",
+ "repos": {
+  "zipvoice-space": {
+   "repo": "k2-fsa/web-assembly-zh-en-tts-zipvoice",
+   "type": "space",
+   "revision": "a118980aaa8d985d10e57425c1fdc2301c05f4cc",
+   "host": "https://huggingface.co/",
+   "base": "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/resolve/a118980aaa8d985d10e57425c1fdc2301c05f4cc/",
+   "page": "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/tree/a118980aaa8d985d10e57425c1fdc2301c05f4cc"
+  },
+  "chatterbox": {
+   "repo": "onnx-community/chatterbox-ONNX",
+   "type": "model",
+   "revision": "3cab09af388d3f02bba43443fce88c1f4525ac43",
+   "host": "https://huggingface.co/",
+   "base": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/",
+   "page": "https://huggingface.co/onnx-community/chatterbox-ONNX/tree/3cab09af388d3f02bba43443fce88c1f4525ac43"
+  },
+  "f5": {
+   "repo": "nsarang/F5-TTS-ONNX",
+   "type": "model",
+   "revision": "2e7e47e103a565c85dcd32141b6b11eeeb57eee6",
+   "host": "https://huggingface.co/",
+   "base": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/",
+   "page": "https://huggingface.co/nsarang/F5-TTS-ONNX/tree/2e7e47e103a565c85dcd32141b6b11eeeb57eee6"
+  }
+ },
+ "files": {
+  "models/chatterbox/onnx-community/chatterbox-ONNX/config.json": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/config.json",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/default_voice.wav": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/default_voice.wav",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/generation_config.json": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/generation_config.json",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/conditional_decoder.onnx": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/conditional_decoder.onnx",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/conditional_decoder.onnx_data": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/conditional_decoder.onnx_data",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/embed_tokens.onnx": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/embed_tokens.onnx",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/embed_tokens.onnx_data": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/embed_tokens.onnx_data",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/language_model_q4.onnx": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4.onnx",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/language_model_q4.onnx_data": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4.onnx_data",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/language_model_q4f16.onnx": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4f16.onnx",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/language_model_q4f16.onnx_data": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4f16.onnx_data",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/speech_encoder.onnx": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/speech_encoder.onnx",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/speech_encoder.onnx_data": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/speech_encoder.onnx_data",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/preprocessor_config.json": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/preprocessor_config.json",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/tokenizer.json": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/tokenizer.json",
+  "models/chatterbox/onnx-community/chatterbox-ONNX/tokenizer_config.json": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/tokenizer_config.json",
+  "models/f5/onnx/decoder_fp32.onnx": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/decoder_fp32.onnx",
+  "models/f5/onnx/encoder_fp32.onnx": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/encoder_fp32.onnx",
+  "models/f5/onnx/transformer_fp16.onnx": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/transformer_fp16.onnx",
+  "models/f5/vocab.txt": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/vocab.txt",
+  "web/runtime/sherpa-onnx-wasm-main-tts.data": "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/resolve/a118980aaa8d985d10e57425c1fdc2301c05f4cc/sherpa-onnx-wasm-main-tts.data",
+  "web/runtime/sherpa-onnx-wasm-main-tts.wasm": "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/resolve/a118980aaa8d985d10e57425c1fdc2301c05f4cc/sherpa-onnx-wasm-main-tts.wasm",
+  "models/f5/onnx/transformer_fp32.onnx": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/transformer_fp32.onnx"
+ },
+ "integrity": {
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/config.json": {
+   "n": 1097,
+   "h": "a7d8518edd1cf6346e4d2be33201747ea4c476718db756f42e6959e4828f4955"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/default_voice.wav": {
+   "n": 714320,
+   "h": "3ebc531cdaba358a327099c1c4f0448026719957bcf4d8e9868767f227e02f4e"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/generation_config.json": {
+   "n": 93,
+   "h": "1b6fbb953861089ebe7da64df46eeef570d53f47a44b7cc1b4d543669fc9cd50"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/conditional_decoder.onnx": {
+   "n": 6350448,
+   "h": "1656d0d31332bae1854839959a3139300ebb67c178651dfa3f8c5fbfa5351351"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/conditional_decoder.onnx_data": {
+   "n": 533970816,
+   "h": "51d58345a272747665ec9d5bb61e01835258a940e321a288582ac4c18cf01b5a"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/embed_tokens.onnx": {
+   "n": 13286,
+   "h": "160722ec14789f616abdb1e31916cbbf9223c03fde0ab546d64ca74fb72e430b"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/embed_tokens.onnx_data": {
+   "n": 61640704,
+   "h": "898c563c3a5ca1b9ea10ce89b0cdcf252b0bb5ab460dfc4eadea003b56e5d2ee"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4.onnx": {
+   "n": 227911,
+   "h": "7f8cdca83b2493536cbf3acf421199808a3d68736f55f4eabd20ef8a99da4313"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4.onnx_data": {
+   "n": 353621248,
+   "h": "5203d1e83c159316f9923c5c83759f6a34f87be1322ce4ad0facd9fc4aef4790"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4f16.onnx": {
+   "n": 229388,
+   "h": "3b78e9235be5e2e2a811e482399155cb30415f6d87c98c21d12bf48843fc928f"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4f16.onnx_data": {
+   "n": 304737408,
+   "h": "2480da95471e4cd41a6b1876686e65e8a594c82459f2e5d6fd7592a5bad4e6da"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/speech_encoder.onnx": {
+   "n": 1184608,
+   "h": "8f1c8a0f89b77bf9cd5dd8f2e034eb2c79dc00fe70d41196b28c257643b00ccb"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/speech_encoder.onnx_data": {
+   "n": 591274880,
+   "h": "04431dcef6325c54b02de2219845888b464bcd1f1ac2f8839c2fecd1ed2ef294"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/preprocessor_config.json": {
+   "n": 130,
+   "h": "1c320b2eea5f45678d17d891d51c38467775091dbf26a074635ba5e98ede5950"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/tokenizer.json": {
+   "n": 28543,
+   "h": "ecddf6aaae85e271610a2743409f7e447886957d0b0836687c1eaec5ccac2891"
+  },
+  "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/tokenizer_config.json": {
+   "n": 244,
+   "h": "b35967f93e30313d05fc9d520721ca9f671aaa5b3edbb03059aed3ff68b4c4c0"
+  },
+  "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/decoder_fp32.onnx": {
+   "n": 62550703,
+   "h": "a16fea891beb4889b47e5987b80c841bb996beaccc1d1fe27a1f9323a089a6da"
+  },
+  "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/encoder_fp32.onnx": {
+   "n": 68549853,
+   "h": "e71d3ed14e90ba3fc1e83560512e86a771e25b6f0be7789b2cf53a5c9ba5617d"
+  },
+  "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/transformer_fp16.onnx": {
+   "n": 661145803,
+   "h": "460b46f401286ffae2270771bb38902ef293eab4e7812265d38baaf7458f97bb"
+  },
+  "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/vocab.txt": {
+   "n": 13800,
+   "h": "2a05f992e00af9b0bd3800a8d23e78d520dbd705284ed2eedb5f4bd29398fa3c"
+  },
+  "models/webgpu/decoder.dq.graph.onnx": {
+   "n": 4174360,
+   "h": "ba2f441a9f8732c3d8a468109dc5dd995f4b510724e95cd873cd05b5321f7587"
+  },
+  "models/webgpu/decoder.dq.recipe.json": {
+   "n": 24122,
+   "h": "eeebceda1ac7b46786c8ef3049443e6ba2ccbaf5cf05d86b4614eb952cadea7b"
+  },
+  "playground/hybrid-runtime/sherpa-onnx-tts.js": {
+   "n": 33271,
+   "h": "ea692f6907722b4f59085ea47108f6b9b33606d0e96400e6c48c99559832ceb8"
+  },
+  "playground/hybrid-runtime/sherpa-onnx-wasm-main-tts.js": {
+   "n": 112005,
+   "h": "68f50c4998957b0608a8ae9747242c2dfb0ebff81f9c50f32460fbd9c66df254"
+  },
+  "playground/hybrid-runtime/sherpa-onnx-wasm-main-tts.wasm": {
+   "n": 13740412,
+   "h": "9425c663367325cb263af8f837610b57690d0ce7e123bef51e4dac95cc50aab9"
+  },
+  "playground/ort-patched/BUILD-INFO.txt": {
+   "n": 590,
+   "h": "2f25abdb5933c9e4474e0650691a4384c12a6e105661519b871e0b1ca105f25d"
+  },
+  "playground/ort-patched/ort-wasm-simd-threaded.asyncify.mjs": {
+   "n": 48533,
+   "h": "bbaffcdc1305cba2d2d740c9712ac1abe743fa2c72658f3982fca9f209dece5a"
+  },
+  "playground/ort-patched/ort-wasm-simd-threaded.asyncify.wasm": {
+   "n": 27991399,
+   "h": "0c09c1658c5c4ff1895470cea0307040316ba0494efa1f20bfa27ed6be01cbbb"
+  },
+  "playground/vendor/jsdelivr/npm/@huggingface/transformers@4.0.0-next.2/+esm.js": {
+   "n": 380546,
+   "h": "bae1a89e23df50f6699ee6411e2531a47c22dc3d085c795d1c3e139dc31997de"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-common/+esm.js": {
+   "n": 19672,
+   "h": "b3bdb1f8905e7846d1c5969a9c9d643cfb9b313efb05fda4858fdf575d0a5be2"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-web@1.22.0/dist/ort-wasm-simd-threaded.jsep.mjs": {
+   "n": 44677,
+   "h": "1cbcba8f2c769c1eecbab66a1b1e55ef11704515bf4306373e3db3c37cf6dcd8"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-web@1.22.0/dist/ort-wasm-simd-threaded.jsep.wasm": {
+   "n": 21872216,
+   "h": "b45970d0632383a057c27ca5b660b216f8e00c17cf8db9f6207b5e4abc839368"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-web@1.22.0/dist/ort.webgpu.min.mjs": {
+   "n": 357582,
+   "h": "e131e81c9324807e1e6f9103e8f8e936112827dcc9993cde9407a333b1f07ae0"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-web@1.25.0-dev.20260209-a3749f1353/dist/ort-wasm-simd-threaded.asyncify.mjs": {
+   "n": 48533,
+   "h": "6a0ecca44e2ea4ae193837f3893819f39f8d2768fadcf14e485b60fccc939762"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-web@1.25.0-dev.20260209-a3749f1353/dist/ort-wasm-simd-threaded.asyncify.wasm": {
+   "n": 27200494,
+   "h": "a0a8899e2a218bffc93a684a104a883648569accc3cd1f2bc7c506c6835a968b"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-web@1.25.0-dev.20260209-a3749f1353/webgpu/+esm.js": {
+   "n": 114187,
+   "h": "ff5a0c5e5d37e2f84298d6e5fb5b20f410e363bac7e4688e3aeb95be54c703b7"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-web@1.30.0/dist/ort-wasm-simd-threaded.asyncify.mjs": {
+   "n": 53057,
+   "h": "3d1c85995364bb643302fc6fd877a0c3ba5ae72401815e0f24828a53d9191e28"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-web@1.30.0/dist/ort-wasm-simd-threaded.asyncify.wasm": {
+   "n": 26781914,
+   "h": "39f9f0894d478800487ed9f7dbe92618498db320cf55c8e3d89adff8dce658da"
+  },
+  "playground/vendor/jsdelivr/npm/onnxruntime-web@1.30.0/dist/ort.webgpu.min.js": {
+   "n": 66417,
+   "h": "7d65dad7eb4564ad98db9924a259af2e2c68ebfbdbf254fa5d728f1c5736e07a"
+  },
+  "playground/vendor/jsdelivr/npm/pinyin-pro@3.29.5/+esm.js": {
+   "n": 470405,
+   "h": "e918fa78ada0a5f6b75e7f5db9134fbd96dba8393c5dff6dfb5aa90168246a9e"
+  },
+  "web/runtime/sherpa-onnx-tts.js": {
+   "n": 33227,
+   "h": "91bb4b3095ad4a449bb99518b15b4b31659886d808fd16656b6dce634405fcf1"
+  },
+  "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/resolve/a118980aaa8d985d10e57425c1fdc2301c05f4cc/sherpa-onnx-wasm-main-tts.data": {
+   "n": 204108836,
+   "h": "0e2f08ed07e58a4970293252645f0fc92accc42dce40fad4a3e14a05c3f7fb21"
+  },
+  "web/runtime/sherpa-onnx-wasm-main-tts.js": {
+   "n": 111298,
+   "h": "b8f1d2f26349561e8225a93a6b0ae9c11e4d9e9cd2df44a51fab960d90ce1a04"
+  },
+  "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/resolve/a118980aaa8d985d10e57425c1fdc2301c05f4cc/sherpa-onnx-wasm-main-tts.wasm": {
+   "n": 13473435,
+   "h": "d60db5247fa13e92ad291f8cb5cfe2f6823934c0fa430b177724929a587ab9fb"
+  },
+  "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/transformer_fp32.onnx": {
+   "n": 1321718282,
+   "h": "c63aeb96953ccae551df6717d892f73a8408e59f1a6fe8edc2aed8063bd195b8"
+  }
+ },
+ "docs": [
+  "docs/feasibility.md",
+  "docs/performance_analysis.md",
+  "docs/playground.md",
+  "docs/playground_hybrid.md",
+  "docs/recording_hybrid.md",
+  "docs/playground_f5_fix.md",
+  "docs/chatterbox_lifecycle.md",
+  "docs/chatterbox_fastload.md",
+  "docs/asset_compatibility.md",
+  "docs/github_pages_deployment.md"
+ ]
+}

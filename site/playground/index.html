@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="vs-release" content="vs-20261027-1db5a87">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; connect-src 'self' https://huggingface.co https://*.huggingface.co https://*.hf.co; img-src 'self' data: blob:; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0c0d10">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238f7dff'/%3E%3Cstop offset='1' stop-color='%234ea2ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='9' fill='url(%23g)'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%230b0b10'/%3E%3C/svg%3E">
+<title>Voice Studio — on-device speech</title>
+<meta name="description" content="Clone your voice and generate speech with three TTS models running entirely in your browser.">
+<link rel="stylesheet" href="ux/ux.css">
+<link rel="stylesheet" href="studio/studio.css">
+</head><body data-view="create">
+<div class="light" aria-hidden="true"></div>
+
+<header class="bar">
+ <div class="bar-start">
+  <a class="brand" href="#model" data-view-link="create" aria-label="Voice Studio — Create"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Voice Studio</span></a>
+  <nav class="views" aria-label="Sections"><ul>
+   <li><a href="#model" data-view-link="create" aria-current="page">Create</a></li>
+   <li><a href="#compare" data-view-link="compare">Compare</a></li>
+   <li><a href="#library" data-view-link="library">My creations<span class="count" id="libCount" aria-label=""></span></a></li>
+   <li class="nav-journey"><a href="#journey" data-view-link="journey">Journey</a></li>
+  </ul></nav>
+ </div>
+ <nav class="dots" aria-label="Progress"><ol id="dots">
+  <li><button type="button" data-go="model" aria-label="Step 1: model"></button></li>
+  <li><button type="button" data-go="text" aria-label="Step 2: your message"></button></li>
+  <li><button type="button" data-go="voice" aria-label="Step 3: your voice"></button></li>
+  <li><button type="button" data-go="ready" aria-label="Step 4: generate"></button></li>
+ </ol></nav>
+ <div class="bar-end">
+  <button type="button" class="indicator" id="modelChip" hidden aria-label="Change model"><i class="dot" aria-hidden="true"></i><span id="chipName"></span><span class="chip-state" id="chipState"></span></button>
+  <a class="about" href="#journey" data-view-link="journey">Journey</a>
+  <button type="button" class="adv-btn" id="advBtn" aria-haspopup="dialog">Advanced</button>
+ </div>
+</header>
+
+<p class="banner hide" id="assetBanner" role="status"></p>
+<p class="vh" id="announce" aria-live="polite"></p>
+<p class="toast" id="toast" role="status" hidden></p>
+
+<main class="stage" id="stage">
+
+ <!-- Scene 1 -->
+ <section class="scene" id="scene-model" data-scene="model" aria-labelledby="q1">
+  <div class="scene-in">
+   <h1 id="q1" tabindex="-1">Which model do you want to use?</h1>
+   <p class="lede">Each model runs in this browser, on your device: your voice and your text are never sent anywhere. A model’s files download the first time you use it.</p>
+   <p class="device-note hide" id="deviceNote" role="status"></p>
+   <div class="models" id="models" role="radiogroup" aria-labelledby="q1"></div>
+   <p class="fine dl-note" id="dlNote"></p>
+  </div>
+ </section>
+
+ <!-- Scene 2 -->
+ <section class="scene" id="scene-text" data-scene="text" aria-labelledby="q2" hidden>
+  <div class="scene-in narrow">
+   <button type="button" class="back" data-back aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+   <h1 id="q2" tabindex="-1">What do you want to say?</h1>
+   <div class="compose">
+    <textarea id="text" rows="1" aria-label="Your message" placeholder="Type a sentence…" enterkeyhint="next" spellcheck="false"></textarea>
+   </div>
+   <div class="examples-row"><span class="ex-label" id="exLabel">Try an example</span><div class="examples" id="examples" role="group" aria-labelledby="exLabel"></div><button type="button" class="ex-undo hide" id="exUndo">Restore my text</button></div>
+   <p class="soft-warn" id="langWarn"></p>
+   <div class="foot">
+    <span class="hint" id="textHint"><kbd>Enter</kbd> to continue · <kbd>Shift</kbd> + <kbd>Enter</kbd> for a new line</span>
+    <button type="button" class="next" id="textNext" disabled><span>Continue</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+   </div>
+  </div>
+ </section>
+
+ <!-- Scene 3: passage on the left, recording instrument on the right (stacked on narrow screens) -->
+ <section class="scene" id="scene-voice" data-scene="voice" aria-labelledby="q3" hidden>
+  <div class="scene-in wide voice-grid">
+   <div class="v-left">
+    <button type="button" class="back" data-back aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <h1 id="q3" tabindex="-1">Now, let us hear your voice.</h1>
+    <div class="read-head">
+     <p class="lede">Read this aloud at your normal pace.</p>
+     <div class="lang-switch"><label class="vh" for="recLang">Reading language</label><select id="recLang"><option value="en">English</option><option value="zh">中文</option></select>
+      <button type="button" class="text-btn" id="newScript">Another passage</button></div>
+    </div>
+    <p class="lang-hint" id="langHint" role="status"></p>
+    <blockquote id="passageText" class="passage" lang="en"></blockquote>
+   </div>
+
+   <div class="v-right">
+    <div class="mic" id="mic">
+     <canvas id="liveWave" height="120" aria-hidden="true"></canvas>
+     <div class="mic-ctl">
+      <button id="recStart" type="button" class="mic-btn" aria-label="Start recording"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0M12 17v3"/></svg></button>
+      <button id="recStop" type="button" class="mic-btn stop" disabled aria-label="Stop recording"><i aria-hidden="true"></i></button>
+     </div>
+     <p class="mic-time" id="micTime" aria-hidden="true">0:00</p>
+     <progress id="recLevel" max="1" value="0" class="hide vh" aria-label="Microphone level"></progress>
+    </div>
+
+    <div class="review" id="review">
+     <button id="recPlay" type="button" class="play hide" aria-label="Play your recording"><svg class="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg></button>
+     <canvas id="recWave" height="56" role="img" aria-label="Waveform of your recording"></canvas>
+     <span class="rv-time" id="recDur"></span>
+     <div class="rv-actions"><button id="recAgain" type="button" class="text-btn hide">Record again</button><button id="recClear" type="button" class="text-btn quiet hide">Delete</button></div>
+    </div>
+
+    <p class="status" id="recStatus" role="status">Press the microphone when you are ready. Your browser will ask for permission.</p>
+    <p class="soft-warn" id="recWarn"></p>
+    <details id="refTextRow" class="correction"><summary>I said something different</summary>
+     <label for="refText">What you actually said, word for word</label><input type="text" id="refText">
+    </details>
+    <audio id="refAudio" controls preload="none" class="hide vh"></audio>
+    <span id="refInfo" class="hide vh"></span>
+    <div class="foot end"><button type="button" class="next" id="voiceNext" disabled><span>Continue</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+   </div>
+  </div>
+ </section>
+
+ <!-- Scene 4: summary + Generate; after generation the same scene re-composes around the player (data-phase="result") -->
+ <section class="scene" id="scene-ready" data-scene="ready" data-phase="ready" aria-labelledby="q4" hidden>
+  <div class="scene-in narrow ready-grid">
+   <button type="button" class="back" data-back aria-label="Back"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+   <h1 id="q4" tabindex="-1">You’re all set. Ready to generate?</h1>
+   <dl class="summary" id="summary">
+    <div><dt>Model</dt><dd><i class="dot" id="readyDot" aria-hidden="true"></i><span id="sumModel"></span><span class="sum-note" id="sumReady"></span></dd><button type="button" class="text-btn" data-go="model">Change</button></div>
+    <div><dt>Message</dt><dd class="sum-msg" id="sumText"></dd><button type="button" class="text-btn" data-go="text">Edit</button></div>
+    <div><dt>Voice</dt><dd id="sumVoice"></dd><button type="button" class="text-btn" data-go="voice">Re-record</button></div>
+   </dl>
+   <div class="sum-chips" id="sumChips" aria-label="Summary"><span id="chipModel"></span><span id="chipMsg"></span><span id="chipVoice"></span><button type="button" class="text-btn" data-go="text">Edit message</button></div>
+   <p class="soft-warn" id="sumWarn"></p>
+   <div class="gen-row" id="genRow">
+    <button id="generate" class="cta" disabled><span class="cta-fill" aria-hidden="true"></span><span class="cta-label" id="ctaLabel">Generate</span></button>
+    <progress id="genBar" max="1" value="0" class="hide vh" aria-label="Generation progress"></progress>
+    <p class="status" id="genStatus" role="status"></p>
+   </div>
+   <p class="soft-warn" id="genNeed"></p>
+   <div class="notice" id="notice" role="status"></div>
+   <div class="error" id="error" role="alert"></div>
+
+   <section class="result hide" id="resultSec" aria-label="Your generated speech">
+    <div class="player" id="player">
+     <button id="outPlay" type="button" class="play big" aria-label="Play"><svg class="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg></button>
+     <canvas id="outWave" height="72" role="img" aria-label="Waveform of the generated speech"></canvas>
+     <span class="rv-time" id="outTime">0:00</span>
+    </div>
+    <p class="caption" id="resultCaption"></p>
+    <p class="soft-warn" id="resultIssue"></p>
+    <audio id="out" controls preload="none" class="vh"></audio>
+    <div class="after">
+     <button type="button" class="pill-btn" id="another">Try another sentence</button>
+     <a id="download" download="speech.wav" class="text-btn">Download</a>
+     <button type="button" class="text-btn" id="toCompare">Compare models</button>
+     <button type="button" class="text-btn quiet" id="restart">Start over</button>
+    </div>
+   </section>
+  </div>
+ </section>
+</main>
+
+<dialog id="advanced" aria-labelledby="advTitle">
+ <div class="adv-head"><h2 id="advTitle">Advanced settings</h2><button type="button" class="text-btn" id="advClose" aria-label="Close advanced settings">Close</button></div>
+ <div class="adv-body">
+  <section class="adv-settings" aria-labelledby="setTitle">
+   <h3 id="setTitle">Settings for <span id="paramsFor"></span></h3>
+   <p class="fine">They apply to this model only — in Create, in Compare and when you generate again from My creations.</p>
+   <div class="row" id="backendRow"><label for="backendSel">ZipVoice backend</label><select id="backendSel"><option value="auto">Automatic: WebGPU when available, otherwise WASM</option><option value="wasm">WASM CPU only (slow baseline)</option></select><small class="p-hint">Automatic uses your GPU when the browser offers WebGPU and falls back to the CPU otherwise.</small></div>
+   <div class="params" id="params"></div>
+   <p class="fine" id="paramNote"></p>
+  </section>
+  <details class="devdiag" id="devDiag">
+   <summary>Developer diagnostics</summary>
+   <p class="fine">Measurements from this tab, as they happened. Nothing here is estimated.</p>
+   <h3>Model and runtime</h3>
+   <p class="fine" id="modelMeta"></p>
+   <p class="fine" id="status"></p>
+   <p class="fine" id="loadStatus" role="status"></p>
+   <progress id="loadBar" max="1" value="0" class="hide"></progress>
+   <h3>What has been verified</h3>
+   <ul class="verify" id="verifyList"></ul>
+   <h3>Perceived waiting (this session)</h3>
+   <table id="waitTable"><tbody><tr><td>No model selected yet</td><td></td></tr></tbody></table>
+   <h3>Last generation</h3>
+   <p class="fine" id="resultBackend"></p>
+   <p class="fine" id="resultSummary"></p>
+   <table id="metrics"><tbody></tbody></table>
+   <p class="fine">RTF = inference time ÷ audio duration. RTF &lt; 1 is faster than real time but is <b>not</b> streaming: audio is available only after generation finishes.</p>
+   <h3>Recording</h3>
+   <table id="recDiag"><tbody><tr><td>No recording yet</td><td></td></tr></tbody></table>
+   <p class="fine" id="refHint"></p>
+   <h3>Lifecycle (workers, loads, generates)</h3>
+   <table id="lifecycleTable"><tbody><tr><td>No generation yet</td><td></td></tr></tbody></table>
+   <h3>This device</h3>
+   <table id="deviceTable"><tbody><tr><td>checking…</td><td></td></tr></tbody></table>
+   <h3>Assets (startup check)</h3>
+   <table id="assetTable"><tbody><tr><td>checking…</td><td></td></tr></tbody></table>
+   <h3>My creations (memory)</h3>
+   <p class="fine" id="libDiag">No creations yet.</p>
+  </details>
+ </div>
+</dialog>
+
+<dialog id="modelInfo" class="sheet-center" aria-labelledby="miTitle"><div class="mi" id="miBody"></div></dialog>
+
+<section class="view" id="view-compare" data-view="compare" hidden aria-labelledby="cmpTitle"><div class="view-in" id="compareRoot"></div></section>
+<section class="view" id="view-library" data-view="library" hidden aria-labelledby="libTitle"><div class="view-in" id="libraryRoot"></div></section>
+<section class="view" id="view-journey" data-view="journey" hidden aria-labelledby="jrTitle"><div class="view-in wide" id="journeyRoot"></div></section>
+<audio id="studioAudio" preload="none" class="vh" aria-hidden="true"></audio>
+
+<script type="module" src="app.js"></script>
+<script type="module" src="ux/ux.js"></script>
+<script type="module" src="studio/main.js"></script>
+</body></html>

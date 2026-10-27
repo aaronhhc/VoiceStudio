@@ -1,0 +1,36 @@
+# Deploys site/ (a release built and audited in the private research repository by deploy/ghpages/build.mjs) to GitHub Pages.
+# Nothing is built here: the job only re-checks the published files and uploads them with the official Pages actions.
+name: Deploy Voice Studio to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the site before publishing
+        run: |
+          set -eu
+          test -f site/index.html && test -f site/playground/index.html && test -f site/sw.js && test -f site/playground/hosting.json
+          big=$(find site -type f -size +95M); if [ -n "$big" ]; then echo "files over 95 MB: $big"; exit 1; fi
+          bad=$(find site -type f \( -iname '*.wav' -o -iname '*.mp3' -o -iname '*.pt' -o -iname '*.safetensors' -o -iname '*.data' -o -iname '*.onnx_data' \)); if [ -n "$bad" ]; then echo "audio/weight files: $bad"; exit 1; fi
+          if grep -rIl -e '/Users/[a-z]' -e 'hf_[A-Za-z0-9]\{30,\}' -e 'ghp_[A-Za-z0-9]\{30,\}' site; then echo "local paths or credentials found"; exit 1; fi
+          du -sh site
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

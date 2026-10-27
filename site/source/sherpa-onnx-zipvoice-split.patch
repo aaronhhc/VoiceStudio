@@ -1,0 +1,521 @@
+diff --git a/sherpa-onnx/c-api/c-api.cc b/sherpa-onnx/c-api/c-api.cc
+index 8ab11a1..d360085 100644
+--- a/sherpa-onnx/c-api/c-api.cc
++++ b/sherpa-onnx/c-api/c-api.cc
+@@ -1671,16 +1671,16 @@ static const SherpaOnnxGeneratedAudio *SherpaOnnxOfflineTtsGenerateInternal(
+   return ans;
+ }
+ 
+-static const SherpaOnnxGeneratedAudio *SherpaOnnxOfflineTtsGenerateInternal(
+-    const SherpaOnnxOfflineTts *tts, const char *text,
+-    const SherpaOnnxGenerationConfig *config,
+-    std::function<int32_t(const float *, int32_t, float)> callback) {
+-  sherpa_onnx::GenerationConfig cfg;
++// [on-device-web-tts] factored out of SherpaOnnxOfflineTtsGenerateInternal so
++// the ZipVoice split-pipeline functions below use the identical conversion.
++static bool ToGenerationConfig(const SherpaOnnxGenerationConfig *config,
++                               sherpa_onnx::GenerationConfig *out) {
++  sherpa_onnx::GenerationConfig &cfg = *out;
+   if (config->reference_audio) {
+     if (config->reference_audio_len <= 0) {
+       SHERPA_ONNX_LOGE("Invalid reference audio len: %d",
+                        config->reference_audio_len);
+-      return nullptr;
++      return false;
+     }
+ 
+     cfg.reference_audio.assign(
+@@ -1709,6 +1709,17 @@ static const SherpaOnnxGeneratedAudio *SherpaOnnxOfflineTtsGenerateInternal(
+       SHERPA_ONNX_LOGE("Ignore the extra opt");
+     }
+   }
++  return true;
++}
++
++static const SherpaOnnxGeneratedAudio *SherpaOnnxOfflineTtsGenerateInternal(
++    const SherpaOnnxOfflineTts *tts, const char *text,
++    const SherpaOnnxGenerationConfig *config,
++    std::function<int32_t(const float *, int32_t, float)> callback) {
++  sherpa_onnx::GenerationConfig cfg;
++  if (!ToGenerationConfig(config, &cfg)) {
++    return nullptr;
++  }
+ 
+   sherpa_onnx::GeneratedAudio audio = tts->impl->Generate(text, cfg, callback);
+ 
+@@ -1936,6 +1947,96 @@ const SherpaOnnxGeneratedAudio *SherpaOnnxOfflineTtsGenerateWithConfig(
+   }
+ }
+ 
++const SherpaOnnxZipvoicePrepared *SherpaOnnxOfflineTtsZipvoicePrepare(
++    const SherpaOnnxOfflineTts *tts, const char *text,
++    const SherpaOnnxGenerationConfig *config, int32_t chunk_index) {
++  if (!tts || !text || !config) {
++    SHERPA_ONNX_LOGE("tts, text and config must be non-null");
++    return nullptr;
++  }
++  sherpa_onnx::GenerationConfig cfg;
++  if (!ToGenerationConfig(config, &cfg)) {
++    return nullptr;
++  }
++  auto prepared = std::make_unique<sherpa_onnx::ZipvoicePrepared>();
++  if (!tts->impl->ZipvoicePrepare(text, cfg, chunk_index, prepared.get())) {
++    return nullptr;
++  }
++  auto *ans = new SherpaOnnxZipvoicePrepared;
++  ans->num_frames = prepared->num_frames;
++  ans->prompt_len = prepared->prompt_len;
++  ans->feat_dim = prepared->feat_dim;
++  ans->num_chunks = prepared->num_chunks;
++  ans->t_shift = prepared->t_shift;
++  ans->guidance_scale = prepared->guidance_scale;
++  ans->text_condition = prepared->text_condition.data();
++  ans->speech_condition = prepared->speech_condition.data();
++  ans->x = prepared->x.data();
++  ans->impl = prepared.release();  // owns the three buffers
++  return ans;
++}
++
++void SherpaOnnxOfflineTtsZipvoiceDestroyPrepared(
++    const SherpaOnnxZipvoicePrepared *p) {
++  if (p) {
++    delete static_cast<sherpa_onnx::ZipvoicePrepared *>(p->impl);
++    delete p;
++  }
++}
++
++const SherpaOnnxGeneratedAudio *SherpaOnnxOfflineTtsZipvoiceVocode(
++    const SherpaOnnxOfflineTts *tts, const float *x, int32_t num_frames,
++    int32_t prompt_len, const SherpaOnnxGenerationConfig *config) {
++  if (!tts || !x || !config) {
++    SHERPA_ONNX_LOGE("tts, x and config must be non-null");
++    return nullptr;
++  }
++  sherpa_onnx::GenerationConfig cfg;
++  if (!ToGenerationConfig(config, &cfg)) {
++    return nullptr;
++  }
++  std::vector<float> samples =
++      tts->impl->ZipvoiceVocode(x, num_frames, prompt_len, cfg);
++  if (samples.empty()) {
++    return nullptr;
++  }
++  auto *ans = new SherpaOnnxGeneratedAudio;
++  float *buf = new float[samples.size()];
++  std::copy(samples.begin(), samples.end(), buf);
++  ans->samples = buf;
++  ans->n = static_cast<int32_t>(samples.size());
++  ans->sample_rate = tts->impl->SampleRate();
++  return ans;
++}
++
++const SherpaOnnxGeneratedAudio *SherpaOnnxOfflineTtsScaleSilence(
++    const SherpaOnnxOfflineTts *tts, const float *samples, int32_t n,
++    float silence_scale) {
++  if (!tts || !samples || n <= 0) {
++    return nullptr;
++  }
++  sherpa_onnx::GeneratedAudio audio;
++  audio.samples.assign(samples, samples + n);
++  audio.sample_rate = tts->impl->SampleRate();
++  if (silence_scale != 1) {
++    audio = audio.ScaleSilence(silence_scale);
++  }
++  auto *ans = new SherpaOnnxGeneratedAudio;
++  float *buf = new float[audio.samples.size()];
++  std::copy(audio.samples.begin(), audio.samples.end(), buf);
++  ans->samples = buf;
++  ans->n = static_cast<int32_t>(audio.samples.size());
++  ans->sample_rate = audio.sample_rate;
++  return ans;
++}
++
++void SherpaOnnxOfflineTtsZipvoiceSetSeed(const SherpaOnnxOfflineTts *tts,
++                                         int32_t seed) {
++  if (tts) {
++    const_cast<SherpaOnnxOfflineTts *>(tts)->impl->ZipvoiceSetSeed(seed);
++  }
++}
++
+ void SherpaOnnxDestroyOfflineTtsGeneratedAudio(
+     const SherpaOnnxGeneratedAudio *p) {
+   if (p) {
+diff --git a/sherpa-onnx/c-api/c-api.h b/sherpa-onnx/c-api/c-api.h
+index 5fe0813..f7d466d 100644
+--- a/sherpa-onnx/c-api/c-api.h
++++ b/sherpa-onnx/c-api/c-api.h
+@@ -2786,6 +2786,49 @@ SherpaOnnxOfflineTtsGenerateWithConfig(
+  *          functions.
+  * @see SherpaOnnxOfflineTtsGenerateWithConfig
+  */
++/**
++ * [on-device-web-tts] ZipVoice split pipeline. Prepare() runs frontend +
++ * encoder for text chunk `chunk_index` and draws the initial noise; the caller
++ * runs the flow-matching decoder loop (e.g. on WebGPU) and passes the final
++ * state to Vocode(). Concatenate chunk audio, then call ScaleSilence() with
++ * the silence_scale Generate() would use (C API default 0.2).
++ */
++typedef struct SherpaOnnxZipvoicePrepared {
++  const float *text_condition;    // (num_frames, feat_dim)
++  const float *speech_condition;  // (num_frames, feat_dim)
++  const float *x;                 // initial noise (num_frames, feat_dim)
++  int32_t num_frames;             // 0 => chunk has no tokens, skip it
++  int32_t prompt_len;
++  int32_t feat_dim;
++  int32_t num_chunks;
++  float t_shift;
++  float guidance_scale;
++  void *impl;  // private
++} SherpaOnnxZipvoicePrepared;
++
++SHERPA_ONNX_API const SherpaOnnxZipvoicePrepared *
++SherpaOnnxOfflineTtsZipvoicePrepare(const SherpaOnnxOfflineTts *tts,
++                                    const char *text,
++                                    const SherpaOnnxGenerationConfig *config,
++                                    int32_t chunk_index);
++
++SHERPA_ONNX_API void SherpaOnnxOfflineTtsZipvoiceDestroyPrepared(
++    const SherpaOnnxZipvoicePrepared *p);
++
++SHERPA_ONNX_API const SherpaOnnxGeneratedAudio *
++SherpaOnnxOfflineTtsZipvoiceVocode(const SherpaOnnxOfflineTts *tts,
++                                   const float *x, int32_t num_frames,
++                                   int32_t prompt_len,
++                                   const SherpaOnnxGenerationConfig *config);
++
++SHERPA_ONNX_API const SherpaOnnxGeneratedAudio *SherpaOnnxOfflineTtsScaleSilence(
++    const SherpaOnnxOfflineTts *tts, const float *samples, int32_t n,
++    float silence_scale);
++
++// Make ZipVoice's initial noise deterministic (seed >= 0).
++SHERPA_ONNX_API void SherpaOnnxOfflineTtsZipvoiceSetSeed(
++    const SherpaOnnxOfflineTts *tts, int32_t seed);
++
+ SHERPA_ONNX_API void SherpaOnnxDestroyOfflineTtsGeneratedAudio(
+     const SherpaOnnxGeneratedAudio *p);
+ 
+diff --git a/sherpa-onnx/c-api/sherpa-onnx-symbols-c.exp b/sherpa-onnx/c-api/sherpa-onnx-symbols-c.exp
+index 7fb988c..fd2bf45 100644
+--- a/sherpa-onnx/c-api/sherpa-onnx-symbols-c.exp
++++ b/sherpa-onnx/c-api/sherpa-onnx-symbols-c.exp
+@@ -175,3 +175,8 @@ _SherpaOnnxWaveFileSize
+ _SherpaOnnxWriteWave
+ _SherpaOnnxWriteWaveMultiChannel
+ _SherpaOnnxWriteWaveToBuffer
++_SherpaOnnxOfflineTtsZipvoicePrepare
++_SherpaOnnxOfflineTtsZipvoiceDestroyPrepared
++_SherpaOnnxOfflineTtsZipvoiceVocode
++_SherpaOnnxOfflineTtsScaleSilence
++_SherpaOnnxOfflineTtsZipvoiceSetSeed
+diff --git a/sherpa-onnx/csrc/offline-tts-impl.h b/sherpa-onnx/csrc/offline-tts-impl.h
+index 60eefdc..5fa4e4c 100644
+--- a/sherpa-onnx/csrc/offline-tts-impl.h
++++ b/sherpa-onnx/csrc/offline-tts-impl.h
+@@ -50,6 +50,24 @@ class OfflineTtsImpl {
+     return {};
+   }
+ 
++  // [on-device-web-tts] ZipVoice split pipeline; other models don't support it.
++  virtual bool ZipvoicePrepare(const std::string &text,
++                               const GenerationConfig &config,
++                               int32_t chunk_index,
++                               ZipvoicePrepared *out) const {
++    SHERPA_ONNX_LOGE("ZipvoicePrepare is only supported by ZipVoice models");
++    return false;
++  }
++
++  virtual std::vector<float> ZipvoiceVocode(
++      const float *x, int32_t num_frames, int32_t prompt_len,
++      const GenerationConfig &config) const {
++    SHERPA_ONNX_LOGE("ZipvoiceVocode is only supported by ZipVoice models");
++    return {};
++  }
++
++  virtual void ZipvoiceSetSeed(int32_t seed) {}
++
+   // Return the sample rate of the generated audio
+   virtual int32_t SampleRate() const = 0;
+ 
+diff --git a/sherpa-onnx/csrc/offline-tts-zipvoice-impl.h b/sherpa-onnx/csrc/offline-tts-zipvoice-impl.h
+index 499f9eb..fc1ddbc 100644
+--- a/sherpa-onnx/csrc/offline-tts-zipvoice-impl.h
++++ b/sherpa-onnx/csrc/offline-tts-zipvoice-impl.h
+@@ -253,6 +253,131 @@ class OfflineTtsZipvoiceImpl : public OfflineTtsImpl {
+     return Generate(text, config, std::move(callback));
+   }
+ 
++  // [on-device-web-tts] Split pipeline: everything Generate() does for one
++  // text chunk up to (and including) drawing the initial noise. The caller
++  // runs the Euler loop over the decoder and then calls ZipvoiceVocode().
++  bool ZipvoicePrepare(const std::string &text, const GenerationConfig &config,
++                       int32_t chunk_index,
++                       ZipvoicePrepared *out) const override {
++    float feat_scale =
++        config.GetExtraFloat("feat_scale", config_.model.zipvoice.feat_scale);
++    float t_shift =
++        config.GetExtraFloat("t_shift", config_.model.zipvoice.t_shift);
++    float target_rms =
++        config.GetExtraFloat("target_rms", config_.model.zipvoice.target_rms);
++    float guidance_scale = config.GetExtraFloat(
++        "guidance_scale", config_.model.zipvoice.guidance_scale);
++
++    std::vector<int64_t> prompt_tokens;
++    for (const auto &t : frontend_->ConvertTextToTokenIds(config.reference_text)) {
++      prompt_tokens.insert(prompt_tokens.end(), t.tokens.begin(), t.tokens.end());
++    }
++    if (prompt_tokens.empty()) {
++      SHERPA_ONNX_LOGE("Failed to convert prompt text to token IDs");
++      return false;
++    }
++
++    std::vector<float> prompt_features = ComputePromptFeatures(
++        config.reference_audio, config.reference_sample_rate, feat_scale,
++        target_rms);
++    if (prompt_features.empty()) {
++      SHERPA_ONNX_LOGE("No frames extracted from the prompt audio");
++      return false;
++    }
++
++    auto sentences = SplitByPunctuation(text);
++    sentences = MergeShortSentences(
++        sentences, config.GetExtraInt("min_char_in_sentence", 30));
++    std::vector<std::string> chunks;
++    for (const auto &s : sentences) {
++      auto pieces =
++          SplitLongSentence(s, config.GetExtraInt("max_char_in_sentence", 200));
++      chunks.insert(chunks.end(), pieces.begin(), pieces.end());
++    }
++
++    *out = ZipvoicePrepared{};
++    out->num_chunks = static_cast<int32_t>(chunks.size());
++    out->t_shift = t_shift;
++    out->guidance_scale = guidance_scale;
++    if (chunk_index < 0 || chunk_index >= out->num_chunks) {
++      SHERPA_ONNX_LOGE("chunk_index %d out of range [0, %d)", chunk_index,
++                       out->num_chunks);
++      return false;
++    }
++
++    std::vector<int64_t> tokens;
++    for (const auto &t : frontend_->ConvertTextToTokenIds(chunks[chunk_index])) {
++      tokens.insert(tokens.end(), t.tokens.begin(), t.tokens.end());
++    }
++    if (tokens.empty()) {
++      return true;  // num_frames == 0: nothing to synthesize for this chunk
++    }
++
++    auto memory_info =
++        Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeDefault);
++    std::array<int64_t, 2> tokens_shape = {1,
++                                           static_cast<int64_t>(tokens.size())};
++    std::array<int64_t, 2> prompt_tokens_shape = {
++        1, static_cast<int64_t>(prompt_tokens.size())};
++    int32_t feat_dim = model_->GetMetaData().num_mels;
++    int32_t prompt_len = prompt_features.size() / feat_dim;
++    std::array<int64_t, 3> prompt_shape = {1, prompt_len, feat_dim};
++
++    Ort::Value text_condition = model_->Encode(
++        Ort::Value::CreateTensor(memory_info, tokens.data(), tokens.size(),
++                                 tokens_shape.data(), tokens_shape.size()),
++        Ort::Value::CreateTensor(memory_info, prompt_tokens.data(),
++                                 prompt_tokens.size(),
++                                 prompt_tokens_shape.data(),
++                                 prompt_tokens_shape.size()),
++        Ort::Value::CreateTensor(memory_info, prompt_features.data(),
++                                 prompt_features.size(), prompt_shape.data(),
++                                 prompt_shape.size()),
++        config.speed);
++
++    int32_t num_frames =
++        text_condition.GetTensorTypeAndShapeInfo().GetShape()[1];
++    if (num_frames <= prompt_len) {
++      SHERPA_ONNX_LOGE("num_frames (%d) <= prompt_len (%d)", num_frames,
++                       prompt_len);
++      return false;
++    }
++
++    int64_t n = static_cast<int64_t>(num_frames) * feat_dim;
++    const float *tc = text_condition.GetTensorData<float>();
++    out->text_condition.assign(tc, tc + n);
++    out->x.resize(n);
++    model_->FillNoise(out->x.data(), n);  // same draw order as Generate()
++    out->speech_condition.assign(n, 0.0f);
++    std::copy(prompt_features.begin(), prompt_features.end(),
++              out->speech_condition.begin());
++    out->num_frames = num_frames;
++    out->prompt_len = prompt_len;
++    out->feat_dim = feat_dim;
++    return true;
++  }
++
++  // [on-device-web-tts] x: final flow-matching state (num_frames, feat_dim).
++  // Drops the prompt frames, undoes feat_scale and runs the vocoder.
++  std::vector<float> ZipvoiceVocode(const float *x, int32_t num_frames,
++                                    int32_t prompt_len,
++                                    const GenerationConfig &config) const override {
++    float feat_scale =
++        config.GetExtraFloat("feat_scale", config_.model.zipvoice.feat_scale);
++    int32_t C = model_->GetMetaData().num_mels;
++    int32_t T = num_frames - prompt_len;
++    if (T <= 0) return {};
++    std::vector<float> mel = Transpose(x + prompt_len * C, T, C);  // (C, T)
++    Scale(mel.data(), 1 / feat_scale, mel.size(), mel.data());
++    auto memory_info =
++        Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeDefault);
++    std::array<int64_t, 3> shape = {1, C, T};
++    return vocoder_->Run(Ort::Value::CreateTensor<float>(
++        memory_info, mel.data(), mel.size(), shape.data(), shape.size()));
++  }
++
++  void ZipvoiceSetSeed(int32_t seed) override { model_->SetSeed(seed); }
++
+  private:
+   void PostInit() { InitMelBanks(); }
+ 
+diff --git a/sherpa-onnx/csrc/offline-tts-zipvoice-model.cc b/sherpa-onnx/csrc/offline-tts-zipvoice-model.cc
+index 03c00b9..72912b8 100644
+--- a/sherpa-onnx/csrc/offline-tts-zipvoice-model.cc
++++ b/sherpa-onnx/csrc/offline-tts-zipvoice-model.cc
+@@ -266,6 +266,7 @@ class OfflineTtsZipvoiceModel::Impl {
+     }
+   }
+ 
++ public:  // [on-device-web-tts] used by OfflineTtsZipvoiceModel::Encode
+   Ort::Value RunEncoder(Ort::Value tokens, Ort::Value prompt_tokens,
+                         Ort::Value prompt_features, float speed) {
+     auto memory_info =
+@@ -308,6 +309,12 @@ class OfflineTtsZipvoiceModel::Impl {
+     return std::move(encoder_out[0]);
+   }
+ 
++  void FillNoise(float *p, int64_t n) const { normal_gen_.Fill(p, n); }
++
++  void SetSeed(int32_t seed) {
++    normal_gen_ = NormalDataGenerator(0.0f, 1.0f, seed);
++  }
++
+   Ort::Value RunDecoder(float t, Ort::Value x, Ort::Value text_condition,
+                         Ort::Value speech_condition,
+                         Ort::Value guidance_scale_tensor) {
+@@ -375,6 +382,20 @@ const OfflineTtsZipvoiceModelMetaData &OfflineTtsZipvoiceModel::GetMetaData()
+   return impl_->GetMetaData();
+ }
+ 
++Ort::Value OfflineTtsZipvoiceModel::Encode(Ort::Value tokens,
++                                           Ort::Value prompt_tokens,
++                                           Ort::Value prompt_features,
++                                           float speed) const {
++  return impl_->RunEncoder(std::move(tokens), std::move(prompt_tokens),
++                           std::move(prompt_features), speed);
++}
++
++void OfflineTtsZipvoiceModel::FillNoise(float *p, int64_t n) const {
++  impl_->FillNoise(p, n);
++}
++
++void OfflineTtsZipvoiceModel::SetSeed(int32_t seed) { impl_->SetSeed(seed); }
++
+ Ort::Value OfflineTtsZipvoiceModel::Run(Ort::Value tokens,
+                                         Ort::Value prompt_tokens,
+                                         Ort::Value prompt_features,
+diff --git a/sherpa-onnx/csrc/offline-tts-zipvoice-model.h b/sherpa-onnx/csrc/offline-tts-zipvoice-model.h
+index e784906..6807b2c 100644
+--- a/sherpa-onnx/csrc/offline-tts-zipvoice-model.h
++++ b/sherpa-onnx/csrc/offline-tts-zipvoice-model.h
+@@ -32,6 +32,14 @@ class OfflineTtsZipvoiceModel {
+ 
+   const OfflineTtsZipvoiceModelMetaData &GetMetaData() const;
+ 
++  // [on-device-web-tts] Split-pipeline helpers: run only the text encoder,
++  // draw the initial flow-matching noise, and make that noise reproducible.
++  // Returns text_condition of shape (1, num_frames, feat_dim).
++  Ort::Value Encode(Ort::Value tokens, Ort::Value prompt_tokens,
++                    Ort::Value prompt_features, float speed) const;
++  void FillNoise(float *p, int64_t n) const;
++  void SetSeed(int32_t seed);
++
+  private:
+   class Impl;
+   std::unique_ptr<Impl> impl_;
+diff --git a/sherpa-onnx/csrc/offline-tts.cc b/sherpa-onnx/csrc/offline-tts.cc
+index 8a6b895..4e39759 100644
+--- a/sherpa-onnx/csrc/offline-tts.cc
++++ b/sherpa-onnx/csrc/offline-tts.cc
+@@ -359,6 +359,21 @@ GeneratedAudio OfflineTts::Generate(
+ #endif
+ }
+ 
++bool OfflineTts::ZipvoicePrepare(const std::string &text,
++                                 const GenerationConfig &config,
++                                 int32_t chunk_index,
++                                 ZipvoicePrepared *out) const {
++  return impl_->ZipvoicePrepare(text, config, chunk_index, out);
++}
++
++std::vector<float> OfflineTts::ZipvoiceVocode(
++    const float *x, int32_t num_frames, int32_t prompt_len,
++    const GenerationConfig &config) const {
++  return impl_->ZipvoiceVocode(x, num_frames, prompt_len, config);
++}
++
++void OfflineTts::ZipvoiceSetSeed(int32_t seed) { impl_->ZipvoiceSetSeed(seed); }
++
+ int32_t OfflineTts::SampleRate() const { return impl_->SampleRate(); }
+ 
+ int32_t OfflineTts::NumSpeakers() const { return impl_->NumSpeakers(); }
+diff --git a/sherpa-onnx/csrc/offline-tts.h b/sherpa-onnx/csrc/offline-tts.h
+index a9e0eb3..d9149f4 100644
+--- a/sherpa-onnx/csrc/offline-tts.h
++++ b/sherpa-onnx/csrc/offline-tts.h
+@@ -97,6 +97,20 @@ class OfflineTtsImpl;
+ using GeneratedAudioCallback = std::function<int32_t(
+     const float * /*samples*/, int32_t /*n*/, float /*progress*/)>;
+ 
++// [on-device-web-tts] Intermediate tensors of one ZipVoice text chunk, so the
++// flow-matching decoder loop can run outside this library (e.g. WebGPU).
++struct ZipvoicePrepared {
++  std::vector<float> text_condition;    // (num_frames, feat_dim)
++  std::vector<float> speech_condition;  // (num_frames, feat_dim)
++  std::vector<float> x;                 // initial noise (num_frames, feat_dim)
++  int32_t num_frames = 0;
++  int32_t prompt_len = 0;
++  int32_t feat_dim = 0;
++  int32_t num_chunks = 0;  // number of text chunks after sentence splitting
++  float t_shift = 0.5f;
++  float guidance_scale = 1.0f;
++};
++
+ class OfflineTts {
+  public:
+   ~OfflineTts();
+@@ -148,6 +162,14 @@ class OfflineTts {
+                           const GenerationConfig &config,
+                           GeneratedAudioCallback callback = nullptr) const;
+ 
++  // [on-device-web-tts] ZipVoice split pipeline. See ZipvoicePrepared.
++  bool ZipvoicePrepare(const std::string &text, const GenerationConfig &config,
++                       int32_t chunk_index, ZipvoicePrepared *out) const;
++  std::vector<float> ZipvoiceVocode(const float *x, int32_t num_frames,
++                                    int32_t prompt_len,
++                                    const GenerationConfig &config) const;
++  void ZipvoiceSetSeed(int32_t seed);
++
+   // Return the sample rate of the generated audio
+   int32_t SampleRate() const;
+ 
+diff --git a/wasm/tts/CMakeLists.txt b/wasm/tts/CMakeLists.txt
+index 663076b..60089c9 100644
+--- a/wasm/tts/CMakeLists.txt
++++ b/wasm/tts/CMakeLists.txt
+@@ -17,6 +17,11 @@ set(exported_functions
+   SherpaOnnxOfflineTtsGenerateWithConfig
+   SherpaOnnxOfflineTtsNumSpeakers
+   SherpaOnnxOfflineTtsSampleRate
++  SherpaOnnxOfflineTtsZipvoicePrepare
++  SherpaOnnxOfflineTtsZipvoiceDestroyPrepared
++  SherpaOnnxOfflineTtsZipvoiceVocode
++  SherpaOnnxOfflineTtsScaleSilence
++  SherpaOnnxOfflineTtsZipvoiceSetSeed
+   SherpaOnnxWriteWave
+ )
+ set(mangled_exported_functions)

@@ -1,0 +1,4 @@
+onnxruntime a3749f13536bd25e89ba8f8a5ae21e88b9337057 + chatterbox-ort/ort-session-disable-mem-reuse.patch
+emsdk 4.0.23, cmake 3.31.6, closure via openjdk version "21.0.13" 2026-10-20 LTS, built 2026-10-25T10:56:57Z on Darwin arm64
+bbaffcdc1305cba2d2d740c9712ac1abe743fa2c72658f3982fca9f209dece5a  ~/Develop/_worktrees/on-device-web-tts/chatterbox-ort/playground/ort-patched/ort-wasm-simd-threaded.asyncify.mjs
+7a220b9ad65d2c211ebcf5c4d9e296cdd0d5761366e437d02a23cee7ae55379e  ~/Develop/_worktrees/on-device-web-tts/chatterbox-ort/playground/ort-patched/ort-wasm-simd-threaded.asyncify.wasm

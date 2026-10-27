@@ -1,0 +1,1024 @@
+{
+ "release": "vs-20261027-1db5a87",
+ "commit": "1db5a870bbe7ef10f3eb37c949a4b0a834a796cd",
+ "dirty": false,
+ "built": "2026-10-27T06:16:22.918Z",
+ "repos": {
+  "zipvoice-space": {
+   "repo": "k2-fsa/web-assembly-zh-en-tts-zipvoice",
+   "type": "space",
+   "revision": "a118980aaa8d985d10e57425c1fdc2301c05f4cc",
+   "host": "https://huggingface.co/",
+   "base": "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/resolve/a118980aaa8d985d10e57425c1fdc2301c05f4cc/",
+   "page": "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/tree/a118980aaa8d985d10e57425c1fdc2301c05f4cc"
+  },
+  "chatterbox": {
+   "repo": "onnx-community/chatterbox-ONNX",
+   "type": "model",
+   "revision": "3cab09af388d3f02bba43443fce88c1f4525ac43",
+   "host": "https://huggingface.co/",
+   "base": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/",
+   "page": "https://huggingface.co/onnx-community/chatterbox-ONNX/tree/3cab09af388d3f02bba43443fce88c1f4525ac43"
+  },
+  "f5": {
+   "repo": "nsarang/F5-TTS-ONNX",
+   "type": "model",
+   "revision": "2e7e47e103a565c85dcd32141b6b11eeeb57eee6",
+   "host": "https://huggingface.co/",
+   "base": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/",
+   "page": "https://huggingface.co/nsarang/F5-TTS-ONNX/tree/2e7e47e103a565c85dcd32141b6b11eeeb57eee6"
+  }
+ },
+ "totals": {
+  "pagesFiles": 81,
+  "pagesBytes": 124316466,
+  "huggingfaceFiles": 23,
+  "huggingfaceBytes": 4185555836,
+  "largestPagesFile": 27991399,
+  "perModel": {
+   "zipvoice": {
+    "pages": 45130083,
+    "huggingface": 217582271
+   },
+   "chatterbox": {
+    "pages": 55803954,
+    "huggingface": 1853995124
+   },
+   "f5": {
+    "pages": 22744880,
+    "huggingface": 792260159
+   }
+  }
+ },
+ "files": [
+  {
+   "path": ".nojekyll",
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "404.html",
+   "bytes": 749,
+   "sha256": "4e2aeedcfa5a7eab1bffaf087d4d8f5663576361736176c8c78978a9678d9342",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "docs/asset_compatibility.md",
+   "bytes": 12662,
+   "sha256": "361bb5fcd41c3ed9cd6c3ad87c9fc5046a8466b2f1597302e7d65e97641165c2",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/chatterbox_fastload.md",
+   "bytes": 13585,
+   "sha256": "3e6189ae25945c3c0549a4a197c113cbd5d864c9d7e72dcfe0cc501553212df5",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/chatterbox_lifecycle.md",
+   "bytes": 8129,
+   "sha256": "d40ac217baae4914396f4c48f29123f66c5f763cb2a4da76769f459dd48589f4",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/feasibility.md",
+   "bytes": 3672,
+   "sha256": "63275d82a466df2f51d02c745a1448a6cd91f2605a0ac3a5fd010ecbe1abfd81",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/github_pages_deployment.md",
+   "bytes": 22055,
+   "sha256": "5bff1e8ceeee089f536a10640727d60914d3840869abb243416ba83ea9383f9f",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/performance_analysis.md",
+   "bytes": 8918,
+   "sha256": "6a8f518caf671e7ee212e33140b1c2a807650cd251a7ca133f279339a480c45b",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/playground_f5_fix.md",
+   "bytes": 10290,
+   "sha256": "ccf8ae2a5bbeb088b63b58294aff3ad968020e6613f18c22c323591f7171cdea",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/playground_hybrid.md",
+   "bytes": 7920,
+   "sha256": "a4d8d9b6b5bcb5c3dc6f4acbf9fb67e8f855e491a7d11cdc99828a8897df3b0d",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/playground.md",
+   "bytes": 11537,
+   "sha256": "39cd0e553d92c1748c815f0a2a554c459a6621f2ec1746f6930561a1f94555a8",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/recording_hybrid.md",
+   "bytes": 8123,
+   "sha256": "68f32cb97efc77964062a7ee3de44802eb4c7abb87c206be9a01a3ca542dfa41",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "index.html",
+   "bytes": 745,
+   "sha256": "88b86ed43a972523a66ceee722c7a98baced039dc9c7ef936377431696d61390",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/config.json",
+   "bytes": 1097,
+   "sha256": "a7d8518edd1cf6346e4d2be33201747ea4c476718db756f42e6959e4828f4955",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/config.json",
+   "verifiedBy": "git blob sha1",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/default_voice.wav",
+   "bytes": 714320,
+   "sha256": "3ebc531cdaba358a327099c1c4f0448026719957bcf4d8e9868767f227e02f4e",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/default_voice.wav",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/generation_config.json",
+   "bytes": 93,
+   "sha256": "1b6fbb953861089ebe7da64df46eeef570d53f47a44b7cc1b4d543669fc9cd50",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/generation_config.json",
+   "verifiedBy": "git blob sha1",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/conditional_decoder.onnx",
+   "bytes": 6350448,
+   "sha256": "1656d0d31332bae1854839959a3139300ebb67c178651dfa3f8c5fbfa5351351",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/conditional_decoder.onnx",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/conditional_decoder.onnx_data",
+   "bytes": 533970816,
+   "sha256": "51d58345a272747665ec9d5bb61e01835258a940e321a288582ac4c18cf01b5a",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/conditional_decoder.onnx_data",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/embed_tokens.onnx",
+   "bytes": 13286,
+   "sha256": "160722ec14789f616abdb1e31916cbbf9223c03fde0ab546d64ca74fb72e430b",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/embed_tokens.onnx",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/embed_tokens.onnx_data",
+   "bytes": 61640704,
+   "sha256": "898c563c3a5ca1b9ea10ce89b0cdcf252b0bb5ab460dfc4eadea003b56e5d2ee",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/embed_tokens.onnx_data",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/language_model_q4.onnx",
+   "bytes": 227911,
+   "sha256": "7f8cdca83b2493536cbf3acf421199808a3d68736f55f4eabd20ef8a99da4313",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4.onnx",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/language_model_q4.onnx_data",
+   "bytes": 353621248,
+   "sha256": "5203d1e83c159316f9923c5c83759f6a34f87be1322ce4ad0facd9fc4aef4790",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4.onnx_data",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/language_model_q4f16.onnx",
+   "bytes": 229388,
+   "sha256": "3b78e9235be5e2e2a811e482399155cb30415f6d87c98c21d12bf48843fc928f",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4f16.onnx",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/language_model_q4f16.onnx_data",
+   "bytes": 304737408,
+   "sha256": "2480da95471e4cd41a6b1876686e65e8a594c82459f2e5d6fd7592a5bad4e6da",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/language_model_q4f16.onnx_data",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/speech_encoder.onnx",
+   "bytes": 1184608,
+   "sha256": "8f1c8a0f89b77bf9cd5dd8f2e034eb2c79dc00fe70d41196b28c257643b00ccb",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/speech_encoder.onnx",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/onnx/speech_encoder.onnx_data",
+   "bytes": 591274880,
+   "sha256": "04431dcef6325c54b02de2219845888b464bcd1f1ac2f8839c2fecd1ed2ef294",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/onnx/speech_encoder.onnx_data",
+   "verifiedBy": "lfs sha256",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/preprocessor_config.json",
+   "bytes": 130,
+   "sha256": "1c320b2eea5f45678d17d891d51c38467775091dbf26a074635ba5e98ede5950",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/preprocessor_config.json",
+   "verifiedBy": "git blob sha1",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/tokenizer_config.json",
+   "bytes": 244,
+   "sha256": "b35967f93e30313d05fc9d520721ca9f671aaa5b3edbb03059aed3ff68b4c4c0",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/tokenizer_config.json",
+   "verifiedBy": "git blob sha1",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/tokenizer.json",
+   "bytes": 28543,
+   "sha256": "ecddf6aaae85e271610a2743409f7e447886957d0b0836687c1eaec5ccac2891",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/tokenizer.json",
+   "verifiedBy": "git blob sha1",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/f5/onnx/decoder_fp32.onnx",
+   "bytes": 62550703,
+   "sha256": "a16fea891beb4889b47e5987b80c841bb996beaccc1d1fe27a1f9323a089a6da",
+   "models": [
+    "f5"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/decoder_fp32.onnx",
+   "verifiedBy": "lfs sha256",
+   "licence": "CC BY-NC 4.0, non-commercial (F5-TTS weights, SWivid; ONNX export nsarang/F5-TTS-ONNX)"
+  },
+  {
+   "path": "models/f5/onnx/encoder_fp32.onnx",
+   "bytes": 68549853,
+   "sha256": "e71d3ed14e90ba3fc1e83560512e86a771e25b6f0be7789b2cf53a5c9ba5617d",
+   "models": [
+    "f5"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/encoder_fp32.onnx",
+   "verifiedBy": "lfs sha256",
+   "licence": "CC BY-NC 4.0, non-commercial (F5-TTS weights, SWivid; ONNX export nsarang/F5-TTS-ONNX)"
+  },
+  {
+   "path": "models/f5/onnx/transformer_fp16.onnx",
+   "bytes": 661145803,
+   "sha256": "460b46f401286ffae2270771bb38902ef293eab4e7812265d38baaf7458f97bb",
+   "models": [
+    "f5"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/transformer_fp16.onnx",
+   "verifiedBy": "lfs sha256",
+   "licence": "CC BY-NC 4.0, non-commercial (F5-TTS weights, SWivid; ONNX export nsarang/F5-TTS-ONNX)"
+  },
+  {
+   "path": "models/f5/onnx/transformer_fp32.onnx",
+   "bytes": 1321718282,
+   "sha256": "c63aeb96953ccae551df6717d892f73a8408e59f1a6fe8edc2aed8063bd195b8",
+   "models": [
+    "f5"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/onnx/transformer_fp32.onnx",
+   "verifiedBy": "lfs sha256 (upstream only)",
+   "licence": "CC BY-NC 4.0, non-commercial (F5-TTS weights, SWivid; ONNX export nsarang/F5-TTS-ONNX, tagged Apache-2.0)",
+   "note": "used instead of transformer_fp16.onnx on WebGPU devices without shader-f16, and on CPU"
+  },
+  {
+   "path": "models/f5/vocab.txt",
+   "bytes": 13800,
+   "sha256": "2a05f992e00af9b0bd3800a8d23e78d520dbd705284ed2eedb5f4bd29398fa3c",
+   "models": [
+    "f5"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/nsarang/F5-TTS-ONNX/resolve/2e7e47e103a565c85dcd32141b6b11eeeb57eee6/vocab.txt",
+   "verifiedBy": "git blob sha1",
+   "licence": "CC BY-NC 4.0, non-commercial (F5-TTS weights, SWivid; ONNX export nsarang/F5-TTS-ONNX)"
+  },
+  {
+   "path": "models/webgpu/decoder.dq.graph.onnx",
+   "bytes": 4174360,
+   "sha256": "ba2f441a9f8732c3d8a468109dc5dd995f4b510724e95cd873cd05b5321f7587",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "CC BY-NC 4.0, non-commercial (adaptation of the ZipVoice-Distill weights: graph of the FP32-dequantised decoder and the recipe that rebuilds its weights from the INT8 decoder; contains no large weight tensors)"
+  },
+  {
+   "path": "models/webgpu/decoder.dq.recipe.json",
+   "bytes": 24122,
+   "sha256": "eeebceda1ac7b46786c8ef3049443e6ba2ccbaf5cf05d86b4614eb952cadea7b",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "CC BY-NC 4.0, non-commercial (adaptation of the ZipVoice-Distill weights: graph of the FP32-dequantised decoder and the recipe that rebuilds its weights from the INT8 decoder; contains no large weight tensors)"
+  },
+  {
+   "path": "playground/adapters/chatterbox.js",
+   "bytes": 6140,
+   "sha256": "9196c5c50412502a54966dcd3b41099b66f753c9f489ca3619e266c107f8cf6b",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/adapters/common.js",
+   "bytes": 4771,
+   "sha256": "a5fcddb61c916dfa59277166d762ef405adf27c2cb54b628adc197520e705fe9",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/adapters/f5.js",
+   "bytes": 5832,
+   "sha256": "17f58f879a3b20af50ee18ed58fe5708b0beb70996e86352e822bb24392bff6b",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/adapters/zipvoice-hybrid.js",
+   "bytes": 4535,
+   "sha256": "df50d5cb8619f8bcc1364b30777821ca467ff8b0f7e3fb21e87f78d7679d0359",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/adapters/zipvoice.js",
+   "bytes": 3088,
+   "sha256": "f9194970b29d1461573d30767340c934485359cc6aad1723abcddf1b10ab5589",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/app.js",
+   "bytes": 44796,
+   "sha256": "d40636cfe11e85dd70a4b97e26d9a3b43abbd825a794397e793ca10c899e00ba",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/assets.manifest.json",
+   "bytes": 9675,
+   "sha256": "84ea3a9057ac1bef9ea6dbd3f43f0998e8d0bb52d9f14af8a4f50e39afae82cd",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/credits.html",
+   "bytes": 7244,
+   "sha256": "9303111b154870e0340e6e038b11065f03a1c9a46943e442c6a0613ee2de8fb5",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/hosting.json",
+   "bytes": 15314,
+   "sha256": "c66159b4dec4e7db7ffc09e9fad75052e58f9f449a056ac27c32a053a0415d39",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/hybrid-runtime/sherpa-onnx-tts.js",
+   "bytes": 33271,
+   "sha256": "ea692f6907722b4f59085ea47108f6b9b33606d0e96400e6c48c99559832ceb8",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "sherpa-onnx Apache-2.0 (WASM statically links espeak-ng, GPL-3.0); hybrid build patched by this project"
+  },
+  {
+   "path": "playground/hybrid-runtime/sherpa-onnx-wasm-main-tts.js",
+   "bytes": 112005,
+   "sha256": "68f50c4998957b0608a8ae9747242c2dfb0ebff81f9c50f32460fbd9c66df254",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "sherpa-onnx Apache-2.0 (WASM statically links espeak-ng, GPL-3.0); hybrid build patched by this project"
+  },
+  {
+   "path": "playground/hybrid-runtime/sherpa-onnx-wasm-main-tts.wasm",
+   "bytes": 13740412,
+   "sha256": "9425c663367325cb263af8f837610b57690d0ce7e123bef51e4dac95cc50aab9",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "sherpa-onnx Apache-2.0 (WASM statically links espeak-ng, GPL-3.0); hybrid build patched by this project"
+  },
+  {
+   "path": "playground/index.html",
+   "bytes": 14404,
+   "sha256": "7f60366f2e5cc4075d3b4fb7f3ea7be2d31ec6d06f58ded0a815f78dd058a882",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/ort-patched/BUILD-INFO.txt",
+   "bytes": 590,
+   "sha256": "2f25abdb5933c9e4474e0650691a4384c12a6e105661519b871e0b1ca105f25d",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/ort-patched/ort-wasm-simd-threaded.asyncify.mjs",
+   "bytes": 48533,
+   "sha256": "bbaffcdc1305cba2d2d740c9712ac1abe743fa2c72658f3982fca9f209dece5a",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/ort-patched/ort-wasm-simd-threaded.asyncify.wasm",
+   "bytes": 27991399,
+   "sha256": "0c09c1658c5c4ff1895470cea0307040316ba0494efa1f20bfa27ed6be01cbbb",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/passages.js",
+   "bytes": 1411,
+   "sha256": "2f8e61ded92365da8d81ba0e2a1a8e5e66f3aa53c54507365871c239839d22b7",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/preflight.js",
+   "bytes": 2700,
+   "sha256": "eee9e9303754da74a51e978c88a3b1d56a762e305fc060985fe7e507d28867be",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/recorder-worklet.js",
+   "bytes": 373,
+   "sha256": "fd55983045744836e8d01fc5d9db561ec9d46365fb8b1c34f0c17c3f8412df69",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/recorder.js",
+   "bytes": 3933,
+   "sha256": "5ca3d98e729f85c9aee93c082f3325b3f56e791e6b39ad40185ed4d8678f7f42",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/compare.js",
+   "bytes": 26892,
+   "sha256": "7dea24d06f14bb8335d9f08d1a4a472d0869e8c5f613d2f1b06bab7a310d499e",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/device.js",
+   "bytes": 7156,
+   "sha256": "87618f8ac99669a9af3068c52872aad445638879581584696fffc6d2c09cf4d2",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/history.js",
+   "bytes": 6536,
+   "sha256": "b72b3cc949653f3888393ab9f9b7044009c22a5e9729ea47d5dd37c1764822c6",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/journey.js",
+   "bytes": 8302,
+   "sha256": "3dcc50cadc2304d85defd895931f8289898bd96ad4424bb6e3f66c5434cc0e97",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/journey.json",
+   "bytes": 24763,
+   "sha256": "430b53d2ac2d1834989ecfcaf935db0aea33555cc382bb3ed5c1f8773b7ad71d",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/library.js",
+   "bytes": 8555,
+   "sha256": "a08bb0d9733de393106863bc25f313af1484fd8fca367d6f3608285fe2697bf1",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/main.js",
+   "bytes": 6878,
+   "sha256": "5dd20bb97ed63001104e60f9ae877f8d1f09aab26a2159c6806c06c7c7404971",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/models-info.js",
+   "bytes": 9982,
+   "sha256": "54b73ef03a8e1153ed10b9b47b3cf004cccdf2228c1b1b5ed6f80fa032fdb7fe",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/offline.js",
+   "bytes": 6678,
+   "sha256": "35a5ed303825424f5828fb435375872b8cee8a85ee90fb01c19679cd51e6d9ae",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/player.js",
+   "bytes": 3469,
+   "sha256": "eade706176537911bca3fc1ca86d89989f02976949e8964bdea5e325e7fe4da5",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/studio.css",
+   "bytes": 27496,
+   "sha256": "4ca5321322a24cf128f474c87546c08788a5373c3c9c389288fc248171e46f9f",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/studio/wave.js",
+   "bytes": 1585,
+   "sha256": "8fc0eefa67b8c4ec7198560f236fd2f91a3fe1b05c8ec1e2138da370fe8b4cfc",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/ux/ux.css",
+   "bytes": 31093,
+   "sha256": "beaa6f4111fbf8e2f84b18dbcbe512aea4882ecef966c0d16cd4545dc097e050",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/ux/ux.js",
+   "bytes": 33927,
+   "sha256": "740b11c4cd8875a05fec8237b4875515f8c154d152685d945d4a1538d5c0026b",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/@huggingface/transformers@4.0.0-next.2/+esm.js",
+   "bytes": 380546,
+   "sha256": "bae1a89e23df50f6699ee6411e2531a47c22dc3d085c795d1c3e139dc31997de",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "pages",
+   "licence": "Apache-2.0 (Transformers.js)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-common/+esm.js",
+   "bytes": 19672,
+   "sha256": "b3bdb1f8905e7846d1c5969a9c9d643cfb9b313efb05fda4858fdf575d0a5be2",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-web@1.22.0/dist/ort-wasm-simd-threaded.jsep.mjs",
+   "bytes": 44677,
+   "sha256": "1cbcba8f2c769c1eecbab66a1b1e55ef11704515bf4306373e3db3c37cf6dcd8",
+   "models": [
+    "f5"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-web@1.22.0/dist/ort-wasm-simd-threaded.jsep.wasm",
+   "bytes": 21872216,
+   "sha256": "b45970d0632383a057c27ca5b660b216f8e00c17cf8db9f6207b5e4abc839368",
+   "models": [
+    "f5"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-web@1.22.0/dist/ort.webgpu.min.mjs",
+   "bytes": 357582,
+   "sha256": "e131e81c9324807e1e6f9103e8f8e936112827dcc9993cde9407a333b1f07ae0",
+   "models": [
+    "f5"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-web@1.25.0-dev.20260209-a3749f1353/dist/ort-wasm-simd-threaded.asyncify.mjs",
+   "bytes": 48533,
+   "sha256": "6a0ecca44e2ea4ae193837f3893819f39f8d2768fadcf14e485b60fccc939762",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-web@1.25.0-dev.20260209-a3749f1353/dist/ort-wasm-simd-threaded.asyncify.wasm",
+   "bytes": 27200494,
+   "sha256": "a0a8899e2a218bffc93a684a104a883648569accc3cd1f2bc7c506c6835a968b",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-web@1.25.0-dev.20260209-a3749f1353/webgpu/+esm.js",
+   "bytes": 114187,
+   "sha256": "ff5a0c5e5d37e2f84298d6e5fb5b20f410e363bac7e4688e3aeb95be54c703b7",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-web@1.30.0/dist/ort-wasm-simd-threaded.asyncify.mjs",
+   "bytes": 53057,
+   "sha256": "3d1c85995364bb643302fc6fd877a0c3ba5ae72401815e0f24828a53d9191e28",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-web@1.30.0/dist/ort-wasm-simd-threaded.asyncify.wasm",
+   "bytes": 26781914,
+   "sha256": "39f9f0894d478800487ed9f7dbe92618498db320cf55c8e3d89adff8dce658da",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/onnxruntime-web@1.30.0/dist/ort.webgpu.min.js",
+   "bytes": 66417,
+   "sha256": "7d65dad7eb4564ad98db9924a259af2e2c68ebfbdbf254fa5d728f1c5736e07a",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "MIT (ONNX Runtime Web; ort-patched is a modified build by this project)"
+  },
+  {
+   "path": "playground/vendor/jsdelivr/npm/pinyin-pro@3.29.5/+esm.js",
+   "bytes": 470405,
+   "sha256": "e918fa78ada0a5f6b75e7f5db9134fbd96dba8393c5dff6dfb5aa90168246a9e",
+   "models": [
+    "f5"
+   ],
+   "host": "pages",
+   "licence": "MIT (pinyin-pro)"
+  },
+  {
+   "path": "playground/workers/chatterbox.worker.js",
+   "bytes": 11943,
+   "sha256": "c936a7187c6cea633525156ca9ae385a10f817a5c9c98cfee881c1dbae127c06",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/workers/f5-schedule.js",
+   "bytes": 1992,
+   "sha256": "106265ed222e9949aef0ea69aacacb9261843b91cc450a3c03b4c290cfa4d45a",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/workers/f5.worker.js",
+   "bytes": 15822,
+   "sha256": "9c733a398c4b688e62933c5d569fd18d904363f84f9e1f25e4aad67fc7fcb95e",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/workers/verify.js",
+   "bytes": 6434,
+   "sha256": "0d7f3f0b1129277fd0818490d793550c783d156aa9698e4ca77ba4b0d29ac5b4",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/workers/zipvoice-decoder.js",
+   "bytes": 2530,
+   "sha256": "78fd6dbb7ccdc508962953bc0e27bac7afcc74603f19fe0bfc4f60b14ea75c9e",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "playground/workers/zipvoice-hybrid.worker.js",
+   "bytes": 11842,
+   "sha256": "06d244deb8565559b7e1cd249333db2817c940ceedc1555d6b6a307b4ed182a0",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "redirect.js",
+   "bytes": 67,
+   "sha256": "aaa69483775e8e716bfa6cdcf4dc54c43d0176be4e1610b50db676317fdcd7fc",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "source/build_ort_web.sh",
+   "bytes": 4105,
+   "sha256": "514ee05f73a017cf763a2ad99747c6089ce068bfd2688b9ae161657bc29ad767",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "source/build_sherpa.sh",
+   "bytes": 2583,
+   "sha256": "2dfe6e5ede2b3461ae1e4e9ba4507e1fe6c77624af0821b7e469e552569ff7fe",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "source/decoder_recipe.py",
+   "bytes": 7096,
+   "sha256": "55ccaacc71ebdfbea77ff9e29aa7b77cafa32035a5bd1867818264703fe5a706",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "source/dequantize.py",
+   "bytes": 3037,
+   "sha256": "60a57e919dac13c82e614de3a4d78f822adf78809448175bb0ae7f624f53f1a4",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "source/index.html",
+   "bytes": 2074,
+   "sha256": "5f1b047f6c40331e38432501f3eb8b13130a0291e5dbdd2c9ea87da1aad5fe1f",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "source/LICENSES.md",
+   "bytes": 74835,
+   "sha256": "a38e54ed80c3ad28cd13f18f4792e680aa9973a4d032cdbf5aa05288265c55eb",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "source/ort-session-disable-mem-reuse.patch",
+   "bytes": 2323,
+   "sha256": "3aed99b930a3783bd78068d1b6951e83696a38018d9733899ac26570f826f4fc",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "source/sherpa-onnx-zipvoice-split.patch",
+   "bytes": 21551,
+   "sha256": "39d7a1361647088549456a5b8c66c03be8525442975c8173c400dd36fdf1d291",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "sw.js",
+   "bytes": 24246,
+   "sha256": "4b83f86bea207845d105fbc32b2a59614b47d62888e774809366fbdb940aa1bf",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "THIRD_PARTY.md",
+   "bytes": 5573,
+   "sha256": "5e8715f1aafd48db5354218c75d53447de1abf88020fa350ff99cd0d7b04227e",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "web/runtime/sherpa-onnx-tts.js",
+   "bytes": 33227,
+   "sha256": "91bb4b3095ad4a449bb99518b15b4b31659886d808fd16656b6dce634405fcf1",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "sherpa-onnx Apache-2.0 (WASM statically links espeak-ng, GPL-3.0); hybrid build patched by this project"
+  },
+  {
+   "path": "web/runtime/sherpa-onnx-wasm-main-tts.data",
+   "bytes": 204108836,
+   "sha256": "0e2f08ed07e58a4970293252645f0fc92accc42dce40fad4a3e14a05c3f7fb21",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/resolve/a118980aaa8d985d10e57425c1fdc2301c05f4cc/sherpa-onnx-wasm-main-tts.data",
+   "verifiedBy": "lfs sha256",
+   "licence": "Bundle: ZipVoice-Distill weights (CC BY-NC 4.0, k2-fsa) + Vocos (MIT) + espeak-ng data (GPL-3.0) + lexicons; from the k2-fsa sherpa-onnx Space"
+  },
+  {
+   "path": "web/runtime/sherpa-onnx-wasm-main-tts.js",
+   "bytes": 111298,
+   "sha256": "b8f1d2f26349561e8225a93a6b0ae9c11e4d9e9cd2df44a51fab960d90ce1a04",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "pages",
+   "licence": "sherpa-onnx Apache-2.0 (WASM statically links espeak-ng, GPL-3.0); hybrid build patched by this project"
+  },
+  {
+   "path": "web/runtime/sherpa-onnx-wasm-main-tts.wasm",
+   "bytes": 13473435,
+   "sha256": "d60db5247fa13e92ad291f8cb5cfe2f6823934c0fa430b177724929a587ab9fb",
+   "models": [
+    "zipvoice"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice/resolve/a118980aaa8d985d10e57425c1fdc2301c05f4cc/sherpa-onnx-wasm-main-tts.wasm",
+   "verifiedBy": "lfs sha256",
+   "licence": "sherpa-onnx Apache-2.0 (WASM statically links espeak-ng, GPL-3.0); hybrid build patched by this project"
+  },
+  {
+   "path": "web/worker.js",
+   "bytes": 3583,
+   "sha256": "c9b7d67cd7a0e2585959e7488754d3ef6302946296462fcace7e737f6ec39f39",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  }
+ ]
+}
