@@ -1,9 +1,13 @@
 # Third-party components
 
-Checked against the upstream model cards, repositories and licence files on 2026-10-26, rechecked 2026-10-27 for the GitHub Pages release (licence texts: `deploy/licenses/`, published at `/source/LICENSES.md`).
-What a deployed release redistributes, and under which terms, is summarised in `docs/privacy_and_assets.md` §3; for the GitHub Pages release
-(model weights downloaded by the browser from the original Hugging Face repositories, not re-hosted) see `docs/github_pages_deployment.md` §6. None of these files are committed to this
-repository; `playground/tools/provision_assets.sh` and `scripts/fetch-runtime.sh` download them.
+Checked against the upstream model cards, repositories and licence files on 2026-10-26 and 2026-10-27 (licence texts: `/source/LICENSES.md`; statically
+linked components of our sherpa-onnx build: `/source/NOTICES-hybrid-runtime.md`; ONNX Runtime third-party notices: `/source/onnxruntime/`). The model weights
+are not part of this website: the browser downloads them from the original Hugging Face repositories at pinned revisions (`playground/hosting.json`).
+The engineering record of this release is `docs/github_pages_deployment.md` §6. Paths such as `experiments/…` or `playground/tools/…` below refer to the
+research repository where the release is built; the files this website needs from them are published under `/source/`.
+
+Use: non-commercial academic research demonstration. This website is not affiliated with or endorsed by any of the authors below. This project's own
+application code is all rights reserved; that does not apply to any component listed here, each of which keeps its own licence.
 
 | Component | Source | Licence | Redistribution in a public, non-commercial research demo |
 |---|---|---|---|
@@ -11,7 +15,7 @@ repository; `playground/tools/provision_assets.sh` and `scripts/fetch-runtime.sh
 | ZipVoice-Distill FP32 decoder (`models/webgpu/decoder.dq.fp32.onnx`) | dequantised from the INT8 decoder above by this project (`experiments/webgpu/dequantize.py`, branch experiment/webgpu-feasibility) | **CC BY-NC 4.0** (adaptation of the weights above) | As above; the change is stated on the credits page. The GitHub Pages release does not publish this file: it publishes its weight-free graph and a recipe (`decoder.dq.graph.onnx`, `decoder.dq.recipe.json`, `deploy/ghpages/decoder_recipe.py`) and the browser rebuilds the weights from the INT8 decoder in the bundle. |
 | ZipVoice (code) | https://github.com/k2-fsa/ZipVoice | Apache-2.0 | Not redistributed (only the weights are). |
 | Vocos 24 kHz vocoder (inside the bundle) | https://github.com/gemelo-ai/vocos | MIT, © 2023 Charactr Inc. | Allowed with the licence text. |
-| eSpeak NG (code compiled into both sherpa-onnx WASM builds; data inside the bundle) | https://github.com/espeak-ng/espeak-ng | **GPL-3.0** | Allowed if the corresponding source is offered: the release publishes `/source/` (our patch + build script) and points to sherpa-onnx v1.13.8 and its eSpeak NG dependency. The upstream bundle's exact sherpa-onnx commit is not stated by k2-fsa — see the open item in `docs/privacy_and_assets.md`. The GitHub Pages release does not host k2-fsa's `.wasm`: the browser loads it unchanged from k2-fsa's Space (pinned revision), so only our own build (`playground/hybrid-runtime/`, source fully published) is redistributed by this project. |
+| eSpeak NG (code compiled into both sherpa-onnx WASM builds; data inside the bundle) | https://github.com/espeak-ng/espeak-ng | **GPL-3.0** | Allowed if the corresponding source is offered: for our own build this release offers the complete corresponding source (see the statically linked row below). The upstream bundle's exact sherpa-onnx commit is not stated by k2-fsa. The GitHub Pages release does not host k2-fsa's `.wasm`: the browser loads it unchanged from k2-fsa's Space (pinned revision), so only our own build (`playground/hybrid-runtime/`, source fully published) is redistributed by this project. |
 | sherpa-onnx (WASM runtime + JS API) | https://github.com/k2-fsa/sherpa-onnx | Apache-2.0 | Allowed with the licence text. The hybrid build (`playground/hybrid-runtime/`) is v1.13.8 + `experiments/webgpu/sherpa-onnx-zipvoice-split.patch` (published under `/source/`). |
 | Chatterbox ONNX (`onnx-community/chatterbox-ONNX`) | https://huggingface.co/onnx-community/chatterbox-ONNX (base model ResembleAI/chatterbox) | MIT, © 2025 Resemble AI | Allowed with the licence text. The original release watermarks its audio (PerTh); this browser pipeline adds no watermark — the credits page says so. |
 | F5-TTS ONNX export (`nsarang/F5-TTS-ONNX`: fp16 transformer, encoder, decoder, `vocab.txt`) | https://huggingface.co/nsarang/F5-TTS-ONNX | Tagged Apache-2.0, but derived from the SWivid weights, which are **CC BY-NC 4.0** (https://huggingface.co/SWivid/F5-TTS); a conversion cannot relicense them, so treated as CC BY-NC 4.0 | Allowed for non-commercial use with attribution. |
@@ -19,9 +23,10 @@ repository; `playground/tools/provision_assets.sh` and `scripts/fetch-runtime.sh
 | ONNX Runtime Web 1.25.0-dev.20260209-a3749f1353 (JS API and stock WASM, vendored from jsDelivr), 1.22.0 (F5), 1.30.0 (ZipVoice hybrid decoder) | https://github.com/microsoft/onnxruntime | MIT, © Microsoft Corporation | Allowed with the licence text. |
 | **Patched** ONNX Runtime WASM (`playground/ort-patched/`, `experiments/chatterbox-ort/build_ort_web.sh` + `ort-session-disable-mem-reuse.patch`) | derived from ONNX Runtime at the commit above | MIT (modified build) | Allowed; patch and build script published under `/source/`. |
 | Emscripten / emsdk 4.0.23, Dawn (emdawnwebgpu), Abseil, protobuf, Eigen and the other ONNX Runtime build dependencies | fetched by the ONNX Runtime build | MIT / Apache-2.0 / BSD (per upstream; statically linked into the WASM as in the official package) | As in the official onnxruntime-web package. |
+| Statically linked into our sherpa-onnx WASM build (`playground/hybrid-runtime/`) | ONNX Runtime 1.28.2 (prebuilt static library), piper-phonemize f3ff95a, espeak-ng fork ed530aa, Eigen 5.0.1, OpenFst 1.8.5 fork, kaldi-decoder 0.3.0, kaldifst, kaldi-native-fbank 1.22.3, KISS FFT, simple-sentencepiece 0.7, hclust-cpp, nlohmann/json 3.12.0 | MIT, Apache-2.0, MPL-2.0 (Eigen), BSD, GPL-3.0 (eSpeak NG) | Versions, sources and licence texts: `/source/NOTICES-hybrid-runtime.md`. Complete corresponding source of the whole build (GPL-3.0): release asset `voicestudio-hybrid-runtime-source-vs-20261027-1db5a87.tar.gz` of github.com/aaronhhc/VoiceStudio, linked from `/source/`. |
 | Transformers.js 4.0.0-next.2 (vendored) | https://github.com/huggingface/transformers.js | Apache-2.0 | Allowed with the licence text. |
 | pinyin-pro 3.29.5 (vendored ESM build; Mandarin front end for F5) | https://github.com/zh-lx/pinyin-pro | MIT, © 2022-present zh-lx | Allowed with the licence text. |
 | Reference browser demo | https://huggingface.co/spaces/k2-fsa/web-assembly-zh-en-tts-zipvoice | — | UI structure derived from it; it credits Banafo/Kroko-Streaming-ASR-Wasm for its UI. Nothing of it is redistributed besides the runtime bundle above. |
 
-Not legal advice: the non-commercial (CC BY-NC 4.0) and GPL-3.0 items need the project owner's (and if required the university's) confirmation before a
-public deployment — see `docs/deployment.md`, "Approval gates".
+Not legal advice. The project owner confirmed non-commercial use (CC BY-NC 4.0) and the publication of the GPL-3.0 runtime with its corresponding source
+before this release was published (2026-10-27).

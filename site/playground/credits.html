@@ -18,6 +18,11 @@
  Engineering). It runs the speech models below inside your browser. We did not create these models; we packaged them for the browser, and where we changed a file
  this page says so.</p>
 <p>Responsible use: only clone a voice with the speaker’s permission, and label generated audio as synthetic when you share it. This app adds no audio watermark.</p>
+<p><b>Non-commercial academic research use only.</b> There are no ads, payments or subscriptions. This website is not affiliated with, sponsored by or endorsed by
+ the authors of the models and libraries below (k2-fsa, Resemble AI, SWivid, onnx-community, nsarang, Microsoft, Hugging Face or any other); their names
+ are used only to credit their work. The model weights are provided by their authors “as is”, without warranties (see each licence).</p>
+<p>This project’s own application code is © 2026 the author, all rights reserved (no open-source licence is granted). That applies only to our own code: every
+ third-party component, model and file listed on this page keeps its own licence, and the files we derived from them are under the terms stated below.</p>
 
 <h2>Models</h2>
 <table><thead><tr><th>Component</th><th>Licence</th><th>Our changes</th></tr></thead><tbody>
@@ -45,16 +50,19 @@
 <table><thead><tr><th>Component</th><th>Licence</th><th>Our changes</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/k2-fsa/sherpa-onnx">sherpa-onnx</a> WebAssembly runtime</td><td>Apache-2.0</td><td>The plain processor (CPU) path uses k2-fsa’s own build, loaded unchanged from their Space. The ZipVoice graphics-processor path uses our build of v1.13.8 with a patch that splits the decoder out (<a href="../source/">source</a>).</td></tr>
 <tr><td><a href="https://github.com/espeak-ng/espeak-ng">eSpeak NG</a> (phonemiser compiled into the sherpa-onnx WebAssembly; its data inside the ZipVoice bundle)</td><td><a href="https://www.gnu.org/licenses/gpl-3.0.html">GPL-3.0</a></td><td>None. See “Source code” below.</td></tr>
+<tr><td>Libraries statically linked into our sherpa-onnx build: ONNX Runtime 1.28.2, piper-phonemize, Eigen, OpenFst, kaldi-decoder, kaldifst, kaldi-native-fbank, KISS FFT, simple-sentencepiece, hclust-cpp, nlohmann/json, Emscripten runtime</td><td>MIT, Apache-2.0, MPL-2.0 (Eigen), BSD</td><td>None. Versions and licence texts: <a href="../source/NOTICES-hybrid-runtime.md">NOTICES-hybrid-runtime.md</a></td></tr>
 <tr><td><a href="https://github.com/microsoft/onnxruntime">ONNX Runtime Web</a> 1.22.0, 1.30.0 and 1.25.0-dev (a3749f1353)</td><td>MIT</td><td>For Chatterbox we build the same 1.25.0-dev commit with one change, a session option that skips memory-reuse planning for the decoder (faster start-up). <a href="../source/">Patch and build script</a>.</td></tr>
 <tr><td><a href="https://github.com/huggingface/transformers.js">Transformers.js</a> 4.0.0-next.2</td><td>Apache-2.0</td><td>None</td></tr>
 <tr><td><a href="https://github.com/zh-lx/pinyin-pro">pinyin-pro</a> 3.29.5</td><td>MIT</td><td>None</td></tr>
 </tbody></table>
-<p>The licence texts are in <a href="../source/LICENSES.md">LICENSES.md</a>; the full component list with versions is in <a href="../THIRD_PARTY.md">THIRD_PARTY.md</a>.</p>
+<p>The licence texts are in <a href="../source/LICENSES.md">LICENSES.md</a> and <a href="../source/NOTICES-hybrid-runtime.md">NOTICES-hybrid-runtime.md</a>; ONNX Runtime’s
+ third-party notices for each version we use are in <a href="../source/">/source/onnxruntime/</a>; the full component list with versions is in <a href="../THIRD_PARTY.md">THIRD_PARTY.md</a>.</p>
 
 <h2>Source code</h2>
-<p>Our WebAssembly runtime build contains eSpeak NG (GPL-3.0). Its corresponding source is the public <a href="https://github.com/k2-fsa/sherpa-onnx">sherpa-onnx</a> repository
- (with its eSpeak NG dependency) at the version named above, plus our patch and build script, which this website publishes under <a href="../source/">/source/</a>.
- The other changes we made (ONNX Runtime patch, decoder conversion script) are there too.</p>
+<p>Our WebAssembly runtime build (<code>playground/hybrid-runtime/</code>) contains eSpeak NG (GPL-3.0), so it is distributed under the GPL-3.0. Its complete corresponding
+ source — sherpa-onnx v1.13.8 with our patch applied, every dependency source tree the build used, the build script and instructions — is offered here at no charge:
+ <a href="https://github.com/aaronhhc/VoiceStudio/releases/download/source-vs-20261027-1db5a87/voicestudio-hybrid-runtime-source-vs-20261027-1db5a87.tar.gz">voicestudio-hybrid-runtime-source-vs-20261027-1db5a87.tar.gz</a> (54 MB, sha256 063fcb3f…). Our patch and build script are also under
+ <a href="../source/">/source/</a>, with the other changes we made (ONNX Runtime patch, decoder conversion script).</p>
 
 <h2>Privacy</h2>
 <p>Your recording, your text and the generated audio are processed in this browser and are not uploaded. Your browser only downloads: the app from this website,

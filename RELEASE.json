@@ -30,8 +30,8 @@
   }
  },
  "totals": {
-  "pagesFiles": 81,
-  "pagesBytes": 124316466,
+  "pagesFiles": 85,
+  "pagesBytes": 125516331,
   "huggingfaceFiles": 23,
   "huggingfaceBytes": 4185555836,
   "largestPagesFile": 27991399,
@@ -68,6 +68,15 @@
    "licence": "This project (licence texts: their owners)"
   },
   {
+   "path": "THIRD_PARTY.md",
+   "bytes": 6545,
+   "sha256": "4550f87c16731b6ded0a1f0f6fa59ba78d1abd91c7b0765ec7f5d8ac1f294881",
+   "models": [],
+   "host": "pages",
+   "licence": "This project",
+   "amended": "2026-10-27 licence audit"
+  },
+  {
    "path": "docs/asset_compatibility.md",
    "bytes": 12662,
    "sha256": "361bb5fcd41c3ed9cd6c3ad87c9fc5046a8466b2f1597302e7d65e97641165c2",
@@ -101,16 +110,25 @@
   },
   {
    "path": "docs/github_pages_deployment.md",
-   "bytes": 22055,
-   "sha256": "5bff1e8ceeee089f536a10640727d60914d3840869abb243416ba83ea9383f9f",
+   "bytes": 22212,
+   "sha256": "7c6bed7eda9f18060cad5b198cd927747e5e620ea29365002a4fe4f9a66ace01",
    "models": [],
    "host": "pages",
-   "licence": "This project"
+   "licence": "This project",
+   "amended": "2026-10-27 licence audit"
   },
   {
    "path": "docs/performance_analysis.md",
    "bytes": 8918,
    "sha256": "6a8f518caf671e7ee212e33140b1c2a807650cd251a7ca133f279339a480c45b",
+   "models": [],
+   "host": "pages",
+   "licence": "This project"
+  },
+  {
+   "path": "docs/playground.md",
+   "bytes": 11537,
+   "sha256": "39cd0e553d92c1748c815f0a2a554c459a6621f2ec1746f6930561a1f94555a8",
    "models": [],
    "host": "pages",
    "licence": "This project"
@@ -127,14 +145,6 @@
    "path": "docs/playground_hybrid.md",
    "bytes": 7920,
    "sha256": "a4d8d9b6b5bcb5c3dc6f4acbf9fb67e8f855e491a7d11cdc99828a8897df3b0d",
-   "models": [],
-   "host": "pages",
-   "licence": "This project"
-  },
-  {
-   "path": "docs/playground.md",
-   "bytes": 11537,
-   "sha256": "39cd0e553d92c1748c815f0a2a554c459a6621f2ec1746f6930561a1f94555a8",
    "models": [],
    "host": "pages",
    "licence": "This project"
@@ -324,18 +334,6 @@
    "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
   },
   {
-   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/tokenizer_config.json",
-   "bytes": 244,
-   "sha256": "b35967f93e30313d05fc9d520721ca9f671aaa5b3edbb03059aed3ff68b4c4c0",
-   "models": [
-    "chatterbox"
-   ],
-   "host": "huggingface",
-   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/tokenizer_config.json",
-   "verifiedBy": "git blob sha1",
-   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
-  },
-  {
    "path": "models/chatterbox/onnx-community/chatterbox-ONNX/tokenizer.json",
    "bytes": 28543,
    "sha256": "ecddf6aaae85e271610a2743409f7e447886957d0b0836687c1eaec5ccac2891",
@@ -344,6 +342,18 @@
    ],
    "host": "huggingface",
    "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/tokenizer.json",
+   "verifiedBy": "git blob sha1",
+   "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
+  },
+  {
+   "path": "models/chatterbox/onnx-community/chatterbox-ONNX/tokenizer_config.json",
+   "bytes": 244,
+   "sha256": "b35967f93e30313d05fc9d520721ca9f671aaa5b3edbb03059aed3ff68b4c4c0",
+   "models": [
+    "chatterbox"
+   ],
+   "host": "huggingface",
+   "url": "https://huggingface.co/onnx-community/chatterbox-ONNX/resolve/3cab09af388d3f02bba43443fce88c1f4525ac43/tokenizer_config.json",
    "verifiedBy": "git blob sha1",
    "licence": "MIT (Resemble AI Chatterbox; ONNX export onnx-community/chatterbox-ONNX)"
   },
@@ -486,11 +496,12 @@
   },
   {
    "path": "playground/credits.html",
-   "bytes": 7244,
-   "sha256": "9303111b154870e0340e6e038b11065f03a1c9a46943e442c6a0613ee2de8fb5",
+   "bytes": 8948,
+   "sha256": "40d9beecd91b373a8dc19e7a2d238f2df39823aae2b5ad733b2810c2530a4df9",
    "models": [],
    "host": "pages",
-   "licence": "This project"
+   "licence": "This project",
+   "amended": "2026-10-27 licence audit"
   },
   {
    "path": "playground/hosting.json",
@@ -532,11 +543,12 @@
   },
   {
    "path": "playground/index.html",
-   "bytes": 14404,
-   "sha256": "7f60366f2e5cc4075d3b4fb7f3ea7be2d31ec6d06f58ded0a815f78dd058a882",
+   "bytes": 14652,
+   "sha256": "827bc62978bf93b9da3c58105bff2fdc41a5ebe8c3ae8747861844612b3c204a",
    "models": [],
    "host": "pages",
-   "licence": "This project"
+   "licence": "This project",
+   "amended": "2026-10-27 licence audit"
   },
   {
    "path": "playground/ort-patched/BUILD-INFO.txt",
@@ -889,6 +901,23 @@
    "licence": "This project (licence texts: their owners)"
   },
   {
+   "path": "source/LICENSES.md",
+   "bytes": 74835,
+   "sha256": "a38e54ed80c3ad28cd13f18f4792e680aa9973a4d032cdbf5aa05288265c55eb",
+   "models": [],
+   "host": "pages",
+   "licence": "This project (licence texts: their owners)"
+  },
+  {
+   "path": "source/NOTICES-hybrid-runtime.md",
+   "models": [],
+   "host": "pages",
+   "licence": "Licence texts and notices: their owners",
+   "bytes": 205715,
+   "sha256": "c7ae652750fcaed8b5c583ec5704b47c26e5d99700db6302139cf300cc31b6ba",
+   "amended": "2026-10-27 licence audit"
+  },
+  {
    "path": "source/build_ort_web.sh",
    "bytes": 4105,
    "sha256": "514ee05f73a017cf763a2ad99747c6089ce068bfd2688b9ae161657bc29ad767",
@@ -922,19 +951,39 @@
   },
   {
    "path": "source/index.html",
-   "bytes": 2074,
-   "sha256": "5f1b047f6c40331e38432501f3eb8b13130a0291e5dbdd2c9ea87da1aad5fe1f",
+   "bytes": 3135,
+   "sha256": "12ef3075f1744969815ee0d38d3520b8cde1a2d34fd15382d34ff8f158989ec5",
    "models": [],
    "host": "pages",
-   "licence": "This project (licence texts: their owners)"
+   "licence": "This project (licence texts: their owners)",
+   "amended": "2026-10-27 licence audit"
   },
   {
-   "path": "source/LICENSES.md",
-   "bytes": 74835,
-   "sha256": "a38e54ed80c3ad28cd13f18f4792e680aa9973a4d032cdbf5aa05288265c55eb",
+   "path": "source/onnxruntime/ThirdPartyNotices-v1.22.0.txt",
    "models": [],
    "host": "pages",
-   "licence": "This project (licence texts: their owners)"
+   "licence": "Licence texts and notices: their owners",
+   "bytes": 326866,
+   "sha256": "e9e90971a8e75a9a8ac0c6412e29c1202d079998389915aa485f46c816c3b4cc",
+   "amended": "2026-10-27 licence audit"
+  },
+  {
+   "path": "source/onnxruntime/ThirdPartyNotices-v1.28.2.txt",
+   "models": [],
+   "host": "pages",
+   "licence": "Licence texts and notices: their owners",
+   "bytes": 325054,
+   "sha256": "0e07b95f3a8d6230037707c5c4a2b554d12c4cb67369669ac255635528ffcee2",
+   "amended": "2026-10-27 licence audit"
+  },
+  {
+   "path": "source/onnxruntime/ThirdPartyNotices-v1.30.0.txt",
+   "models": [],
+   "host": "pages",
+   "licence": "Licence texts and notices: their owners",
+   "bytes": 338088,
+   "sha256": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3",
+   "amended": "2026-10-27 licence audit"
   },
   {
    "path": "source/ort-session-disable-mem-reuse.patch",
@@ -959,14 +1008,6 @@
    "models": [],
    "host": "pages",
    "licence": "This project (licence texts: their owners)"
-  },
-  {
-   "path": "THIRD_PARTY.md",
-   "bytes": 5573,
-   "sha256": "5e8715f1aafd48db5354218c75d53447de1abf88020fa350ff99cd0d7b04227e",
-   "models": [],
-   "host": "pages",
-   "licence": "This project"
   },
   {
    "path": "web/runtime/sherpa-onnx-tts.js",
@@ -1019,6 +1060,23 @@
    "models": [],
    "host": "pages",
    "licence": "This project"
+  }
+ ],
+ "amendments": [
+  {
+   "date": "2026-10-27",
+   "what": "post-publication licence audit: no-endorsement and non-commercial notices (app page, credits, THIRD_PARTY.md, README), statically linked component notices, ONNX Runtime third-party notices, GPL-3.0 corresponding-source archive (release asset source-vs-20261027-1db5a87, sha256 063fcb3f9a9e1ea168c7be8c5e840b84db945df6de14b57cbe882f41f770b15c). No code, model or runtime file changed.",
+   "files": [
+    "playground/index.html",
+    "playground/credits.html",
+    "source/index.html",
+    "THIRD_PARTY.md",
+    "docs/github_pages_deployment.md",
+    "source/NOTICES-hybrid-runtime.md",
+    "source/onnxruntime/ThirdPartyNotices-v1.22.0.txt",
+    "source/onnxruntime/ThirdPartyNotices-v1.28.2.txt",
+    "source/onnxruntime/ThirdPartyNotices-v1.30.0.txt"
+   ]
   }
  ]
 }

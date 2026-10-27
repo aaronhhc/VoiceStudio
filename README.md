@@ -50,8 +50,13 @@ This is a non-commercial academic research demonstration: no ads, payments, subs
 - **ZipVoice-Distill** weights: CC BY-NC 4.0 (k2-fsa). Our only change is the FP32 dequantisation of the decoder (graph and recipe in `site/models/webgpu/`), under the same licence.
 - **F5-TTS** weights: CC BY-NC 4.0 (SWivid). ONNX export by nsarang.
 - **Chatterbox**: MIT (Resemble AI). ONNX export by onnx-community.
-- **sherpa-onnx** (Apache-2.0) WebAssembly runtimes include **eSpeak NG (GPL-3.0)**; our patch and build scripts are in `site/source/`.
+- **sherpa-onnx** (Apache-2.0) WebAssembly runtimes include **eSpeak NG (GPL-3.0)**; our patch and build scripts are in `site/source/`, and the complete
+  corresponding source of our build (patched tree + every dependency source) is the release asset
+  [`voicestudio-hybrid-runtime-source-vs-20261027-1db5a87.tar.gz`](https://github.com/aaronhhc/VoiceStudio/releases/tag/source-vs-20261027-1db5a87).
+  Statically linked components and their licences: `site/source/NOTICES-hybrid-runtime.md`; ONNX Runtime third-party notices: `site/source/onnxruntime/`.
 - **ONNX Runtime Web** (MIT; one patched build for Chatterbox, patch in `site/source/`), **Transformers.js** (Apache-2.0), **pinyin-pro** (MIT), **Vocos** (MIT).
+
+This website is not affiliated with or endorsed by the authors of these models and libraries; their names are used only to credit their work.
 
 Full credits: [site/playground/credits.html](https://aaronhhc.github.io/VoiceStudio/playground/credits.html) ·
 component list: `site/THIRD_PARTY.md` · licence texts: `site/source/LICENSES.md`.
